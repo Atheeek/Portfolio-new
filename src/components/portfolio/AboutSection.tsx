@@ -1,5 +1,5 @@
-import { X, Dribbble, Instagram } from 'lucide-react';
-import aboutPortrait from '@/assets/about-portrait.jpg';
+import { Linkedin, Github, X } from 'lucide-react';
+import aboutPortrait from '@/assets/Gemini_Generated_Image_dadhyldadhyldadh.png'; // Replace with your actual portrait
 
 const AboutSection = () => {
   return (
@@ -19,7 +19,7 @@ const AboutSection = () => {
               <div className="aspect-[4/5] rounded-3xl overflow-hidden bg-gradient-to-b from-white/10 to-transparent backdrop-blur-sm border border-white/10">
                 <img 
                   src={aboutPortrait} 
-                  alt="Alexander Portz - About Portrait"
+                  alt="Atheek Rahman - Portrait"
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                 />
               </div>
@@ -29,24 +29,20 @@ const AboutSection = () => {
           {/* Right - Content */}
           <div className="space-y-8">
             <div>
-              <p className="text-white/50 text-sm uppercase tracking-wider mb-6">NUMERIC</p>
+              <p className="text-white/50 text-sm uppercase tracking-wider mb-6">About Me</p>
               
               <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight mb-8">
-                Making Your World Pain Free for Experience.{' '}
-                <span className="text-white/40">Offers more than just</span>
+                Building Scalable & Impactful Software Solutions.{' '}
+                <span className="text-white/40">Full-stack development, DevOps & AI-powered apps.</span>
               </h2>
 
               <div className="space-y-6">
                 <p className="text-white/70 text-lg leading-relaxed">
-                  I'm a passionate digital designer with over 5 years of experience creating 
-                  exceptional user experiences and visual identities. My approach combines 
-                  aesthetic excellence with functional design principles.
+                  I'm a passionate Full Stack Developer & DevOps enthusiast with hands-on experience building production-ready applications using MERN, Next.js, Firebase, and Docker. I specialize in creating scalable web solutions with AI integrations and intuitive user experiences.
                 </p>
 
                 <p className="text-white/70 text-lg leading-relaxed">
-                  Specialized in UI/UX design, visual branding, and art direction for 
-                  digital products. I believe great design should not only look beautiful 
-                  but also solve real problems and create meaningful connections.
+                  I have worked on projects like Cognify (an AI-powered child learning platform) and SmartCity CMS (a complaint management system with real-time maps and automation). My focus is on combining clean code, practical solutions, and impactful UI/UX.
                 </p>
               </div>
             </div>
@@ -54,48 +50,54 @@ const AboutSection = () => {
             {/* Skills Stats */}
             <div className="grid grid-cols-2 gap-8 py-8">
               <div>
-                <div className="text-3xl font-bold text-neon mb-2">150+</div>
+                <div className="text-3xl font-bold text-neon mb-2">8+</div>
                 <p className="text-white/60">Projects Completed</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-neon mb-2">50+</div>
-                <p className="text-white/60">Happy Clients</p>
+                <div className="text-3xl font-bold text-neon mb-2">3+</div>
+                <p className="text-white/60">Clients / Collaborations</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-neon mb-2">5+</div>
+                <div className="text-3xl font-bold text-neon mb-2">2+</div>
                 <p className="text-white/60">Years Experience</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-neon mb-2">25+</div>
-                <p className="text-white/60">Awards Won</p>
+                <div className="text-3xl font-bold text-neon mb-2">1+</div>
+                <p className="text-white/60">Internships / Achievements</p>
               </div>
             </div>
 
             {/* Social Links */}
             <div className="flex gap-4 pt-4">
               <a 
-                href="#" 
+                href="https://linkedin.com/in/your-profile" 
+                target="_blank"
+                className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-neon hover:text-black transition-all duration-300 interactive-hover"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a 
+                href="https://github.com/your-username" 
+                target="_blank"
+                className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-neon hover:text-black transition-all duration-300 interactive-hover"
+              >
+                <Github className="w-5 h-5" />
+              </a>
+              <a 
+                href="https://dribbble.com/your-profile" 
+                target="_blank"
                 className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-neon hover:text-black transition-all duration-300 interactive-hover"
               >
                 <X className="w-5 h-5" />
               </a>
-              <a 
-                href="#" 
-                className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-neon hover:text-black transition-all duration-300 interactive-hover"
-              >
-                <Dribbble className="w-5 h-5" />
-              </a>
-              <a 
-                href="#" 
-                className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-neon hover:text-black transition-all duration-300 interactive-hover"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
             </div>
 
-            <button className="bg-neon text-black px-8 py-4 rounded-full hover:bg-neon-soft transition-all duration-300 font-medium">
-              Download Resume
-            </button>
+            {/* Download Resume */}
+            <a href="/Atheek_Rahman_Resume.pdf" download>
+              <button className="bg-neon text-black px-8 mt-5 py-4 rounded-full hover:bg-neon-soft transition-all duration-300 font-medium">
+                Download Resume
+              </button>
+            </a>
           </div>
         </div>
       </div>

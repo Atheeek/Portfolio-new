@@ -1,5 +1,16 @@
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useRef } from 'react';
+import React, { useRef, Suspense, lazy } from 'react';
+
+// Lazily import the Spline component for better performance
+const Spline = lazy(() => import('@splinetool/react-spline'));
+
+// This is your original background, now used as a loading fallback
+const FallbackBackground = () => (
+  <div className="absolute inset-0 z-0">
+    <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+    <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-neon/5 rounded-full blur-3xl"></div>
+  </div>
+);
 
 const ExperienceSection = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -7,28 +18,32 @@ const ExperienceSection = () => {
   const experiences = [
     {
       id: '01',
-      period: '2023 - Present',
-      title: 'Senior UI/UX Designer',
-      company: 'Digital Innovation Lab',
-      description: 'Leading design systems and creating exceptional user experiences for enterprise applications.',
-      tags: []
+      period: 'Apr 2025 – Jul 2025',
+      title: 'Full Stack Developer Intern',
+      company: 'CDAC, Bangalore',
+      description:
+        'Built scalable MERN applications with authentication, dashboards, and interactive features. Collaborated in an agile environment to deliver production-ready solutions.',
+      tags: ['React', 'Node.js', 'MongoDB', 'Express','mySQL', 'REST APIs']
     },
     {
       id: '02',
-      period: '2022 - 2023',
-      title: 'Art Director',
-      company: 'Creative Studio Inc',
-      description: 'Directing visual identity projects and managing creative teams for global brands.',
-      tags: []
+      period: 'Oct 2024 – Feb 2025',
+      title: 'DevOps Engineer Intern',
+      company: 'Rooman Technologies',
+      description:
+        'Implemented CI/CD pipelines with Jenkins & Docker, automated deployments with NGINX reverse proxy, and optimized infrastructure for real-world applications.',
+      tags: ['Docker', 'Jenkins', 'NGINX', 'CI/CD','AWS' , 'Linux','Github actions']
     },
-    {
-      id: '03',
-      period: '2020 - 2022',
-      title: 'UI Designer',
-      company: 'Startup Ventures',
-      description: 'Crafting intuitive interfaces and conducting user research for mobile applications.',
-      tags: ['Mobile Design', 'Usability Testing']
-    }
+   {
+  id: '03',
+  period: '2024 – Present',
+  title: 'Full Stack Developer (Freelance & Projects)',
+  company: 'Independent',
+  description:
+    'Developed and deployed projects including a Shopify-powered e-commerce website, custom invoice billing software, and modern, high-conversion landing pages for clients.',
+  tags: ['Shopify', 'React', 'Tailwind CSS',   'Three.js', 'GSAP']
+}
+
   ];
 
   const scroll = (direction: 'left' | 'right') => {
@@ -43,55 +58,43 @@ const ExperienceSection = () => {
 
   return (
     <section className="section-padding bg-black relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/2 left-0 w-full h-px  bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-        <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-neon/5 rounded-full blur-3xl"></div>
+      {/* --- 3D BACKGROUND --- */}
+      <div className="absolute top-0 left-0 w-full h-full z-0">
+        <Suspense fallback={<FallbackBackground />}>
+          {/* <Spline
+            // scene="https://prod.spline.design/bsuQI1uutwMwFf5h/scene.splinecode"
+            // scene="https://prod.spline.design/V8BCErw6UD7Hhcz3/scene.splinecode"
+          /> */}
+        </Suspense>
       </div>
 
+      {/* --- FOREGROUND CONTENT --- */}
       <div className="container-padding relative z-10">
         {/* Section Header */}
         <div className="mb-16">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-white/50 text-sm uppercase tracking-wider mb-4">EXPERIENCE</p>
-              <h2 className="text-4xl lg:text-6xl font-bold text-white text-right max-w-2xl ml-auto leading-tight">
-                Making Your World Pain Free for Experience.{' '}
-                <span className="text-white/40">offers more than just simple</span>
-              </h2>
-            </div>
-          </div>
-
-          <div className="flex justify-between items-end mt-8">
-            {/* Award Badge */}
-            <div className="relative">
-              <div className="w-32 h-32 rounded-full border-2 border-white/20 flex items-center justify-center relative">
-                <div className="w-20 h-20 rounded-full border border-white/10 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-xs text-white/60 mb-1">SINCE 2020</div>
-                    <div className="text-white font-bold text-sm">AWARD</div>
-                    <div className="text-xs text-white/60">WINNING</div>
-                    <div className="text-xs text-white/60">DESIGNER</div>
-                  </div>
+            <div className="lg:flex items-center justify-between">
+                <div className='mb-8 lg:mb-0'>
+                    <p className="text-white/50 text-sm uppercase tracking-wider mb-4">EXPERIENCE</p>
+                     <button className="group flex items-center justify-between p-2 pl-6 border border-white/20 rounded-full hover:bg-white/5 transition-colors duration-300">
+                        <span className="text-white text-lg pr-4">See my LinkedIn</span>
+                        <div className="w-12 h-12 flex items-center justify-center bg-neutral-800 rounded-full group-hover:bg-neutral-700 transition-colors duration-300">
+                            <ArrowRight className="w-5 h-5 text-white" />
+                        </div>
+                    </button>
                 </div>
-                <div className="absolute inset-0 rounded-full border-2 border-dashed border-white/20 animate-spin"></div>
-              </div>
+                 <h2 className="text-4xl lg:text-6xl font-bold text-white text-left lg:text-right max-w-2xl ml-auto leading-tight">
+                    Turning Ideas Into Scalable Solutions. <span className="text-white/40">Practical projects, real-world impact.</span>
+                </h2>
             </div>
-
-            <button className="flex items-center gap-2 text-white/70 hover:text-neon transition-colors duration-300">
-              <span>See my LinkedIn</span>
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          </div>
         </div>
 
         {/* Experience Cards */}
         <div className="relative">
-          <div 
+          <div
             ref={scrollContainerRef}
             className="flex gap-6 overflow-x-auto scrollbar-hide pb-8"
           >
-            {experiences.map((exp, index) => (
+            {experiences.map((exp) => (
               <div key={exp.id} className="experience-card group">
                 <div className="flex items-start justify-between mb-6">
                   <div>
@@ -113,7 +116,7 @@ const ExperienceSection = () => {
                 {exp.tags.length > 0 && (
                   <div className="flex gap-2 flex-wrap">
                     {exp.tags.map((tag, tagIndex) => (
-                      <span 
+                      <span
                         key={tagIndex}
                         className="px-3 py-1 bg-neon/10 text-neon text-xs rounded-full border border-neon/20"
                       >
@@ -123,7 +126,6 @@ const ExperienceSection = () => {
                   </div>
                 )}
 
-                {/* Green Accent Bar */}
                 <div className="absolute bottom-0 left-0 h-1 bg-neon transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left w-full"></div>
               </div>
             ))}

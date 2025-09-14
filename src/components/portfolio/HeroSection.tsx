@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { ArrowDown, ArrowRight, X, Dribbble, Instagram, Square } from 'lucide-react';
-import heroPortrait from '@/assets/hero-portrait.jpg';
+import heroPortrait from '@/assets/ChatGPT Image Sep 14, 2025, 01_48_30 PM.png';
 import neonLogo from "@/assets/ChatGPT Image Sep 14, 2025, 12_58_26 AM.png"; // replace with your actual path
 
 
@@ -61,6 +61,7 @@ const HeroSection = () => {
       <Suspense fallback={<FallbackBackground />}>
         <div className="absolute top-0 left-0 w-full h-full z-0">
           <Spline
+            // scene="https://prod.spline.design/bsuQI1uutwMwFf5h/scene.splinecode" 
             scene="https://prod.spline.design/Noj8603bFR7SjxGz/scene.splinecode" 
           />
 
@@ -103,7 +104,7 @@ const HeroSection = () => {
                 <img 
                   src={heroPortrait} 
                   alt="Alexander Portz" 
-                  className="w-full h-full object-cover" 
+                  className="w-full h-full object-cover object-top" 
                 />
               </div>
               <div className="absolute right-4 bottom-6 space-y-3">
