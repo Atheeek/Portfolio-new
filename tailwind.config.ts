@@ -15,6 +15,8 @@ export default {
     extend: {
       fontFamily: {
         sulphur: ['"Sulphur Point"', 'sans-serif'],
+                poppins: ['Poppins', 'sans-serif'],
+
         
           inter: ['Inter', 'sans-serif'],
       },

@@ -10,7 +10,7 @@ const Spline = lazy(() => import('@splinetool/react-spline'));
 // I've kept the NavBar separate for clarity, its content remains the same.
 const NavBar = () => {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 rounded-b-[50px] pt-1 backdrop-blur-md bg-black border-b border-white/10 mx-4 md:mx-20">
+    <nav className="fixed top-0 left-0 right-0 z-50 rounded-b-[50px] h-[13vh] backdrop-blur-md bg-black border-b border-white/10 mx-4 md:mx-20">
       <div className="container mx-auto flex items-center justify-between px-6 py-4 lg:px-8">
         <div className="hidden items-center gap-2 md:flex">
           <div className="h-2 w-2 rounded-full bg-[rgb(133,238,0)]"></div>

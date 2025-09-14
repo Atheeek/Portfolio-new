@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import Lenis from 'lenis'; // 1. Import Lenis
 
 import cmsImage from '@/assets/cms.png';
 import cognifyImage from '@/assets/cognify.png';
@@ -22,7 +23,6 @@ const ProjectsSection = () => {
 
   const componentRef = useRef(null);
   const slidesRef = useRef<HTMLDivElement[]>([]);
-
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [hovering, setHovering] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -30,6 +30,23 @@ const ProjectsSection = () => {
   const handleMouseMove = (e: React.MouseEvent) => {
     setCursorPos({ x: e.clientX, y: e.clientY });
   };
+
+  // 2. Add this useLayoutEffect to set up Lenis
+  useLayoutEffect(() => {
+    const lenis = new Lenis();
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+    
+    // Cleanup on unmount
+    return () => {
+      lenis.destroy();
+    }
+  }, []);
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -40,7 +57,8 @@ const ProjectsSection = () => {
           start: 'top top',
           end: () => `+=${(slides.length - 1) * 1000}`,
           pin: true,
-          scrub: true,
+          // 3. Tweak scrub for a smoother "catch-up" effect
+          scrub: 1, 
           snap: {
             snapTo: 1 / (slides.length - 1),
             duration: 0.3,
@@ -69,34 +87,22 @@ const ProjectsSection = () => {
   }, [cursorPos]);
 
   return (
-    <section
-      ref={componentRef}
-      // FIX 1: Set a simple, solid background color on the main container.
-      className="relative h-screen text-white overflow-hidden font-poppins bg-black"
-      onMouseMove={handleMouseMove}
-    >
+    <section ref={componentRef} className="relative h-screen text-white overflow-hidden font-poppins bg-black" onMouseMove={handleMouseMove}>
       {hovering && (
         <div ref={cursorRef} className="fixed pointer-events-none z-50 w-24 h-24 rounded-full flex items-center justify-center bg-white/10 backdrop-blur-sm">
           <ArrowUpRight className="w-8 h-8 text-white" />
         </div>
       )}
-
       {projects.map((project) => (
-        <div
-          key={project.id}
-          ref={(el) => (slidesRef.current[project.id - 1] = el!)}
-          // FIX 2: Moved the opaque gradient background here so each slide covers the previous one.
-          className="absolute inset-0 h-full w-full flex items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-800 to-black"
-        >
+        <div key={project.id} ref={(el) => (slidesRef.current[project.id - 1] = el!)} className="absolute inset-0 h-full w-full flex items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-800 to-black">
           <div className="relative h-full w-full flex items-center justify-center">
             <div className="absolute top-1/2 -translate-y-1/2 left-8 md:left-16 text-white/50 text-sm hidden md:block"><p>DATE: {project.date}</p></div>
             <div className="absolute top-1/2 -translate-y-1/2 right-8 md:right-16 text-white/50 text-sm hidden md:block"><p>{project.company}</p></div>
             <button className="absolute top-1/2 -translate-y-1/2 left-4 md:left-8 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"><ChevronLeft className="w-5 h-5" /></button>
             <button className="absolute top-1/2 -translate-y-1/2 right-4 md:right-8 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"><ChevronRight className="w-5 h-5" /></button>
-            
             <div className="flex flex-col items-center gap-10 w-full max-w-4xl px-4">
               <p className="text-white/50 text-xs uppercase tracking-widest">MY WORK</p>
-              <h2 className="text-3xl md:text-5xl font-medium text-center text-white">{project.title}</h2>
+              <h2 className="text-3xl md:text-4xl font-[400] font-poppins  text-center text-white">{project.title}</h2>
               <a href={project.github} target="_blank" rel="noopener noreferrer" className="w-full max-w-3xl bg-white/[.03] rounded-3xl border border-white/10 p-2 shadow-[0_0_80px_rgba(255,255,255,0.08)] backdrop-blur-sm cursor-none" onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}>
                 <div className="aspect-video w-full overflow-hidden rounded-2xl">
                   <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
