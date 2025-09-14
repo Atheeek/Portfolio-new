@@ -33,156 +33,117 @@ const ProjectsSection = () => {
 
   useLayoutEffect(() => {
     const lenis = new Lenis();
+
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
+
     requestAnimationFrame(raf);
+
     return () => {
       lenis.destroy();
     }
   }, []);
 
   useLayoutEffect(() => {
-    // GSAP's matchMedia for responsive animations
-    let mm = gsap.matchMedia();
     let ctx = gsap.context(() => {
-        
-      // --- DESKTOP ANIMATION (screens wider than 1024px) ---
-      mm.add("(min-width: 1024px)", () => {
-        const slides = slidesRef.current;
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: componentRef.current,
-            start: 'top top',
-            end: () => `+=${(slides.length - 1) * 1000}`,
-            pin: true,
-            scrub: 1,
-            snap: {
-              snapTo: 1 / (slides.length - 1),
-              duration: 0.3,
-              ease: 'power1.inOut',
-            },
-          }
-        }).from(slides.slice(1), { // Animate all slides except the first
-            yPercent: 100,
-            ease: 'none',
-            stagger: 1, // Stagger ensures they come one after another in the timeline
-        });
+      const slides = slidesRef.current;
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: componentRef.current,
+          start: 'top top',
+          end: () => `+=${(slides.length - 1) * 1000}`,
+          pin: true,
+          scrub: 1,
+          snap: {
+            snapTo: 1 / (slides.length - 1),
+            duration: 0.3,
+            ease: 'power1.inOut',
+          },
+        }
       });
-
-      // --- MOBILE ANIMATION (screens narrower than 1024px) ---
-      mm.add("(max-width: 1023px)", () => {
-        const slides = slidesRef.current;
-        // No pinning, just a simple vertical scroll with fade-in animations
-        slides.forEach((slide) => {
-          gsap.from(slide, {
-            opacity: 0,
-            y: 50,
-            scrollTrigger: {
-              trigger: slide,
-              start: 'top 85%', // Start animation when 85% of the slide is visible
-              end: 'bottom 20%',
-              toggleActions: 'play none none reverse', // Fade in on enter, fade out on reverse scroll
-            }
-          });
-        });
+      slides.forEach((slide, i) => {
+        if (i > 0) {
+          tl.from(slide, { yPercent: 100, ease: 'none' });
+        }
       });
-
     }, componentRef);
-
-    // Custom cursor animation for desktop only
-    const handleCursorMove = (e: MouseEvent) => {
-        gsap.to(cursorRef.current, {
-            x: e.clientX - 48,
-            y: e.clientY - 48,
-            duration: 0.2,
-            ease: 'power2.out',
-        });
-    };
-    if (window.innerWidth >= 1024) {
-        window.addEventListener('mousemove', handleCursorMove);
-    }
-
-    return () => {
-      ctx.revert();
-      mm.kill(); // Cleanup matchMedia
-      if (window.innerWidth >= 1024) {
-        window.removeEventListener('mousemove', handleCursorMove);
-      }
-    };
+    return () => ctx.revert();
   }, []);
 
+  useLayoutEffect(() => {
+    if (cursorRef.current) {
+      gsap.to(cursorRef.current, {
+        x: cursorPos.x - 48,
+        y: cursorPos.y - 48,
+        duration: 0.2,
+        ease: 'power2.out',
+      });
+    }
+  }, [cursorPos]);
+
   return (
-    // On mobile, h-screen is removed to allow natural document flow
-    <section 
-        id="projects"
-        ref={componentRef}
-        className="relative lg:h-screen text-white overflow-hidden font-poppins bg-black"
-        onMouseMove={handleMouseMove}
+    <section id="projects"
+      ref={componentRef}
+      className="relative h-screen text-white overflow-hidden font-poppins bg-black"
+      onMouseMove={handleMouseMove}
     >
-        {/* The custom cursor is now hidden on mobile devices via CSS */}
-        {hovering && (
-            <div
-            ref={cursorRef}
-            className="fixed pointer-events-none z-50 w-24 h-24 rounded-full hidden lg:flex items-center justify-center bg-white/10 backdrop-blur-sm"
-            >
-            <ArrowUpRight className="w-8 h-8 text-lime-400"/>
+      {hovering && (
+        <div
+          ref={cursorRef}
+          className="fixed pointer-events-none z-50 w-24 h-24 rounded-full flex items-center justify-center bg-white/10 backdrop-blur-sm"
+        >
+          <ArrowUpRight className="w-8 h-8 text-lime-400"/>
+        </div>
+      )}
+      {projects.map((project) => (
+        <div
+          key={project.id}
+          ref={(el) => (slidesRef.current[project.id - 1] = el!)}
+          className="absolute inset-0 h-full w-full flex items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-800 to-black"
+        >
+          <div className="relative h-full w-full flex items-center justify-center">
+            <div className="absolute top-1/2 -translate-y-1/2 left-8 md:left-16 text-white/50 text-sm hidden md:block">
+              <p>DATE: {project.date}</p>
             </div>
-        )}
-
-        {/* On mobile, slides are not absolute and will stack vertically */}
-        {projects.map((project, index) => (
-            <div
-            key={project.id}
-            ref={(el) => (slidesRef.current[index] = el!)}
-            className="lg:absolute inset-0 h-screen w-full flex items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-800 to-black py-24 lg:py-0"
-            >
-            <div className="relative h-full w-full flex items-center justify-center">
-                {/* These elements can be hidden on mobile if they feel too cluttered */}
-                <div className="absolute top-1/2 -translate-y-1/2 left-8 md:left-16 text-white/50 text-sm hidden lg:block">
-                <p>DATE: {project.date}</p>
-                </div>
-                <div className="absolute top-1/2 -translate-y-1/2 right-8 md:right-16 text-white/50 text-sm hidden lg:block">
-                <p>{project.company}</p>
-                </div>
-                
-                {/* Arrow buttons are not needed for mobile's vertical scroll */}
-                <button className="absolute top-1/2 -translate-y-1/2 left-4 md:left-8 w-10 h-10 rounded-full bg-white/10 hidden lg:flex items-center justify-center hover:bg-white/20 transition-colors">
-                    <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button className="absolute top-1/2 -translate-y-1/2 right-4 md:right-8 w-10 h-10 rounded-full bg-white/10 hidden lg:flex items-center justify-center hover:bg-white/20 transition-colors">
-                    <ChevronRight className="w-5 h-5" />
-                </button>
-
-                <div className="flex flex-col items-center gap-6 md:gap-8 w-full max-w-4xl px-4">
-                    <p className="text-white/50 text-xs uppercase tracking-widest">MY WORK</p>
-                    <h2 className="text-3xl md:text-4xl font-[400] font-poppins text-center text-white">
-                        {project.title}
-                    </h2>
-                    <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full max-w-2xl bg-white/[.03] rounded-3xl border border-white/10 p-2 shadow-[0_0_80px_rgba(255,255,255,0.08)] backdrop-blur-sm lg:cursor-none"
-                        onMouseEnter={() => setHovering(true)}
-                        onMouseLeave={() => setHovering(false)}
-                    >
-                        <div className="aspect-video w-full overflow-hidden rounded-2xl">
-                        <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-                        </div>
-                    </a>
-                    <div className="flex flex-wrap gap-3 justify-center">
-                        {project.tags.map(tag => (
-                        <span key={tag} className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-white/80">
-                            {tag}
-                        </span>
-                        ))}
-                    </div>
-                </div>
+            <div className="absolute top-1/2 -translate-y-1/2 right-8 md:right-16 text-white/50 text-sm hidden md:block">
+              <p>{project.company}</p>
             </div>
+            <button className="absolute top-1/2 -translate-y-1/2 left-4 md:left-8 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button className="absolute top-1/2 -translate-y-1/2 right-4 md:right-8 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+              <ChevronRight className="w-5 h-5" />
+            </button>
+            <div className="flex flex-col items-center gap-10 w-full max-w-4xl px-4">
+              <p className="text-white/50 text-xs uppercase mt-10 tracking-widest">MY WORK</p>
+              <h2 className="text-3xl md:text-4xl font-[400] font-poppins text-center text-white">
+                {project.title}
+              </h2>
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full max-w-2xl bg-white/[.03] rounded-3xl border border-white/10 p-2 shadow-[0_0_80px_rgba(255,255,255,0.08)] backdrop-blur-sm cursor-none"
+                onMouseEnter={() => setHovering(true)}
+                onMouseLeave={() => setHovering(false)}
+              >
+                <div className="aspect-video w-full overflow-hidden rounded-2xl">
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                </div>
+              </a>
+              <div className="flex flex-wrap gap-3 justify-center">
+                {project.tags.map(tag => (
+                  <span key={tag} className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-white/80">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
-        ))}
+          </div>
+        </div>
+      ))}
     </section>
   );
 };
