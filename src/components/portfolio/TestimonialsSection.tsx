@@ -67,7 +67,7 @@ const TestimonialsSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <p className="text-white/50 text-sm uppercase tracking-wider mb-4">TESTIMONIALS</p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">
+          <h2 className="text-4xl lg:text-5xl font-[400] font-poppins text-white mb-8">
             What Clients Say
           </h2>
         </div>
@@ -100,7 +100,7 @@ const TestimonialsSection = () => {
                 </span>
               </div>
               <div className="text-left">
-                <div className="text-white font-bold text-lg">
+                <div className="text-white font-[400] text-lg">
                   {testimonials[activeTestimonial].name}
                 </div>
                 <div className="text-white/60">
@@ -143,7 +143,7 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Side Testimonial Snippets */}
-        <div className="absolute left-8 top-1/2 -translate-y-1/2 hidden xl:block">
+        {/* <div className="absolute left-8 top-1/2 -translate-y-1/2 hidden xl:block">
           <div className="text-white/30 text-sm max-w-xs">
             <p className="mb-2">"Their motion design skills are exceptional. They created a series of animated videos for our marketing campaign that were both eye-catching and informative."</p>
             <div className="text-xs text-white/20">WEB DESIGNER</div>
@@ -154,8 +154,8 @@ const TestimonialsSection = () => {
           <div className="text-white/30 text-sm max-w-xs text-right">
             <p className="mb-2">"Thanks for the support of Portz, who have been with our business for more than 3 years. Starting from humble journey with many exciting experiences and funny moments. A long journey."</p>
             <div className="text-xs text-white/20">A MANAGER</div>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
       </div>
     </section>
   );

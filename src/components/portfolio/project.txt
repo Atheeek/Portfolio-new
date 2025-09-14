@@ -1,0 +1,218 @@
+import { useLayoutEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ArrowUpRight, Github } from 'lucide-react';
+import Lenis from 'lenis';
+
+// Import your project images
+import cmsImage from '@/assets/cms.png';
+import cognifyImage from '@/assets/cognify.png';
+import igadsEcomImage from '@/assets/igadsstore.png';
+import igadsLandingImage from '@/assets/igaads.png';
+import schoolImage from '@/assets/school.png';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const ProjectsSection = () => {
+  const projects = [
+    { 
+      id: 1, 
+      title: 'Complaint Management System', 
+      image: cmsImage, 
+      tags: ['React.js', 'TailwindCSS', 'GoogleMap API', 'Node.js','MongoDB'], 
+      description: 'A web application for municipalities to manage and track public complaints using interactive heatmaps and real-time data analytics.',
+      liveUrl: '#', // Replace with your live project URL
+      github: 'https://github.com/yourusername/complaint-management-system'
+    },
+    { 
+      id: 2, 
+      title: 'Cognify – AI Learning Platform', 
+      image: cognifyImage, 
+      tags: ['React.js', 'JWT', 'Gamified UI', 'AI Chatbot', 'Node.js'], 
+      description: 'An AI-powered platform for child learning and screening, featuring gamified modules and an interactive chatbot to assist learning.',
+      liveUrl: '#',
+      github: 'https://github.com/yourusername/cognify'
+    },
+    { 
+      id: 3, 
+      title: 'IGADS E-commerce Website', 
+      image: igadsEcomImage, 
+      tags: ['Shopify', 'Liquid', 'E-commerce'], 
+      description: 'A fully functional e-commerce store for an Apple reselling brand, built on the Shopify platform for robust performance and scalability.',
+      liveUrl: '#',
+      github: 'https://github.com/yourusername/igads-ecommerce'
+    },
+    { 
+      id: 4, 
+      title: 'IGADS Landing Page', 
+      image: igadsLandingImage, 
+      tags: ['TypeScript', 'TailwindCSS', 'Framer Motion'], 
+      description: 'A modern and sleek landing page featuring 3D animations and smooth transitions to capture user attention and drive conversions.',
+      liveUrl: '#',
+      github: 'https://github.com/yourusername/igads-landing'
+    },
+    { 
+      id: 5, 
+      title: 'Modern School Website', 
+      image: schoolImage, 
+      tags: ['TypeScript', 'TailwindCSS', 'Responsive UI'], 
+      description: 'A clean, responsive, and user-friendly website for an educational institution, designed to be accessible for students, parents, and staff.',
+      liveUrl: '#',
+      github: 'https://github.com/yourusername/school-website'
+    },
+  ];
+
+  const componentRef = useRef(null);
+  const slidesRef = useRef<HTMLDivElement[]>([]);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [hovering, setHovering] = useState(false);
+  const cursorRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    setCursorPos({ x: e.clientX, y: e.clientY });
+  };
+  
+  // Lenis setup for smooth scrolling
+  useLayoutEffect(() => {
+    const lenis = new Lenis();
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+    return () => lenis.destroy();
+  }, []);
+
+  // GSAP ScrollTrigger animation setup
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      const slides = slidesRef.current;
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: componentRef.current,
+          start: 'top top',
+          end: () => `+=${(slides.length - 1) * 1000}`,
+          pin: true,
+          scrub: 1,
+          snap: {
+            snapTo: 1 / (slides.length - 1),
+            duration: 0.3,
+            ease: 'power1.inOut',
+          },
+        }
+      });
+      slides.forEach((slide, i) => {
+        if (i > 0) {
+          tl.from(slide, { yPercent: 100, ease: 'none' });
+        }
+      });
+    }, componentRef);
+    return () => ctx.revert();
+  }, []);
+  
+  // Custom cursor animation
+  useLayoutEffect(() => {
+    if (cursorRef.current) {
+      gsap.to(cursorRef.current, {
+        x: cursorPos.x - 48,
+        y: cursorPos.y - 48,
+        duration: 0.2,
+        ease: 'power2.out',
+      });
+    }
+  }, [cursorPos]);
+
+  return (
+    <section
+      ref={componentRef}
+      className="relative h-screen text-white overflow-hidden font-poppins bg-black"
+      onMouseMove={handleMouseMove}
+    >
+      {/* Custom Cursor */}
+      {hovering && (
+        <div ref={cursorRef} className="fixed pointer-events-none z-50 w-24 h-24 rounded-full flex items-center justify-center bg-white/10 backdrop-blur-sm">
+          <ArrowUpRight className="w-8 h-8 text-white" />
+        </div>
+      )}
+
+      {/* Slides Container */}
+      {projects.map((project, index) => (
+        <div
+          key={project.id}
+          ref={(el) => (slidesRef.current[index] = el!)}
+          className="absolute inset-0 h-full w-full flex items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-800 to-black p-8"
+        >
+          {/* Main grid container is now h-full to fill the screen */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-12 items-center w-full max-w-7xl mx-auto h-full">
+            
+            {/* Left Column: Image */}
+            <div 
+              className={`w-full lg:col-span-3 ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}
+              onMouseEnter={() => setHovering(true)}
+              onMouseLeave={() => setHovering(false)}
+            >
+              <a 
+                href={project.liveUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block p-2 bg-white/[.03] rounded-3xl border border-white/10 shadow-[0_0_80px_rgba(255,255,255,0.08)] backdrop-blur-sm group cursor-none"
+              >
+                <div className="aspect-video w-full overflow-hidden rounded-2xl">
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
+                  />
+                </div>
+              </a>
+            </div>
+
+            {/* Right Column: Details */}
+            <div className={`w-full lg:col-span-2 ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
+              <h3 className="text-3xl md:text-4xl font-semibold font-poppins text-left text-white">
+                {project.title}
+              </h3>
+              <p className="mt-4 text-gray-300 font-poppins leading-relaxed text-left">
+                {project.description}
+              </p>
+              
+              <div className="mt-6 flex flex-wrap gap-3">
+                {project.tags.map(tag => (
+                  <span 
+                    key={tag} 
+                    className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-lime-300 font-medium"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-8 flex items-center gap-4">
+                <a 
+                  href={project.liveUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-lime-400 text-black font-semibold hover:bg-lime-300 transition-colors duration-300"
+                >
+                  View Live
+                  <ArrowUpRight className="w-5 h-5" />
+                </a>
+                <a 
+                  href={project.github} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 text-white font-semibold hover:bg-white/20 transition-colors duration-300"
+                >
+                  <Github className="w-5 h-5" />
+                  View on GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </section>
+  );
+};
+
+export default ProjectsSection;

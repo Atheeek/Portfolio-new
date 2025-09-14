@@ -93,7 +93,7 @@ const AboutSection = () => {
             </div>
 
             {/* Download Resume */}
-            <a href="/Atheek_Rahman_Resume.pdf" download>
+            <a href="/Atheek_Resume.pdf" download>
               <button className="bg-neon text-black px-8 mt-5 py-4 rounded-full hover:bg-neon-soft transition-all duration-300 font-medium">
                 Download Resume
               </button>

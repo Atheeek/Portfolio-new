@@ -7,7 +7,7 @@ const FooterSection = () => {
   });
 
   return (
-    <footer className="section-padding hero-bg-animation relative overflow-hidden border-t border-white/10">
+    <footer id="contact" className="section-padding hero-bg-animation relative overflow-hidden border-t border-white/10">
       <div className="container-padding">
         <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
           {/* Left - Contact */}
