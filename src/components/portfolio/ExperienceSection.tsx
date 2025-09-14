@@ -99,10 +99,10 @@ const ExperienceSection = () => {
                 <div className="flex items-start justify-between mb-6">
                   <div>
                     <p className="text-white/50 text-sm mb-2">{exp.period}</p>
-                    <h3 className="text-2xl font-bold text-white group-hover:text-neon transition-colors duration-300">
+                    <h3 className="text-2xl font-[400] font-poppins text-white group-hover:text-neon transition-colors duration-300">
                       {exp.title}
                     </h3>
-                    <p className="text-white/70 mt-1">{exp.company}</p>
+                    <p className="text-white/70  mt-1">{exp.company}</p>
                   </div>
                   <div className="text-4xl font-bold text-neon/30 group-hover:text-neon/60 transition-colors duration-300">
                     {exp.id}
