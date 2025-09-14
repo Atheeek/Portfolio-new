@@ -103,11 +103,18 @@ const ProjectsSection = () => {
             <div className="flex flex-col items-center gap-10 w-full max-w-4xl px-4">
               <p className="text-white/50 text-xs uppercase tracking-widest">MY WORK</p>
               <h2 className="text-3xl md:text-4xl font-[400] font-poppins  text-center text-white">{project.title}</h2>
-              <a href={project.github} target="_blank" rel="noopener noreferrer" className="w-full max-w-3xl bg-white/[.03] rounded-3xl border border-white/10 p-2 shadow-[0_0_80px_rgba(255,255,255,0.08)] backdrop-blur-sm cursor-none" onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}>
-                <div className="aspect-video w-full overflow-hidden rounded-2xl">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-                </div>
-              </a>
+              <a
+  href={project.github}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="w-full max-w-2xl bg-white/[.03] rounded-3xl border border-white/10 p-2 shadow-[0_0_80px_rgba(255,255,255,0.08)] backdrop-blur-sm cursor-none"
+  onMouseEnter={() => setHovering(true)}
+  onMouseLeave={() => setHovering(false)}
+>
+  <div className="aspect-video w-full overflow-hidden rounded-2xl">
+    <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+  </div>
+</a>
               <div className="flex flex-wrap gap-3 justify-center">
                 {project.tags.map(tag => (
                   <span key={tag} className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-white/80">{tag}</span>
