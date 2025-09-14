@@ -14,11 +14,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ProjectsSection = () => {
   const projects = [
-    { id: 1, title: 'Complaint Management System', image: cmsImage, tags: ['React.js', 'TailwindCSS', 'GoogleMap API', 'Node.js', 'mongoDB'], date: '2025', company: 'SmartCity CMS', github: 'https://github.com/yourusername/complaint-management-system' },
-    { id: 2, title: 'Cognify – Child Learning & Screening Platform', image: cognifyImage, tags: ['React.js', 'JWT Webtokens', 'Gamified Learning', 'AI Chatbot', 'Node.js', 'mongoDB', 'express'], date: '2025', company: 'Cognify', github: 'https://github.com/yourusername/cognify' },
-    { id: 3, title: 'IGADS E-commerce Website', image: igadsEcomImage, tags: ['Shopify'], date: '2024', company: 'IGADS', github: 'https://github.com/yourusername/igads-ecommerce' },
-    { id: 4, title: 'IGADS Landing Page', image: igadsLandingImage, tags: ['Typescript', 'TailwindCSS', '3D Animations', 'framer-motion'], date: '2024', company: 'IGADS', github: 'https://github.com/yourusername/igads-landing' },
-    { id: 5, title: 'Modern School Website', image: schoolImage, tags: ['Typescript', 'TailwindCSS', 'Responsive UI'], date: '2023', company: 'School Project', github: 'https://github.com/yourusername/school-website' },
+    { id: 1, title: 'Complaint Management System', image: cmsImage, tags: ['React.js', 'TailwindCSS', 'GoogleMap API', 'Node.js', 'mongoDB'], date: '2025', company: 'SmartCity CMS', github: 'https://github.com/Atheeek/City-fix' },
+    { id: 2, title: 'Cognify – Child Learning & Screening Platform', image: cognifyImage, tags: ['React.js', 'JWT Webtokens', 'Gamified Learning', 'AI Chatbot', 'Node.js', 'mongoDB', 'express'], date: '2025', company: 'Cognify', github: 'https://github.com/Atheeek/Cognify-project' },
+    { id: 3, title: 'IGADS E-commerce Website', image: igadsEcomImage, tags: ['Shopify'], date: '2024', company: 'IGADS', github: 'https://igadsmobile.myshopify.com' },
+    { id: 4, title: 'IGADS Landing Page', image: igadsLandingImage, tags: ['Typescript', 'TailwindCSS', '3D Animations', 'framer-motion'], date: '2024', company: 'IGADS', github: 'https://igads.vercel.app' },
+    { id: 5, title: 'Modern School Website', image: schoolImage, tags: ['Typescript', 'TailwindCSS', 'Responsive UI'], date: '2023', company: 'School Project', github: 'https://tems-school.vercel.app/' },
   ];
 
   const componentRef = useRef(null);
@@ -94,7 +94,7 @@ const ProjectsSection = () => {
           ref={cursorRef}
           className="fixed pointer-events-none z-50 w-24 h-24 rounded-full flex items-center justify-center bg-white/10 backdrop-blur-sm"
         >
-          <ArrowUpRight className="w-8 h-8 text-white" />
+          <ArrowUpRight className="w-8 h-8 text-lime-400"/>
         </div>
       )}
       {projects.map((project) => (
@@ -117,7 +117,7 @@ const ProjectsSection = () => {
               <ChevronRight className="w-5 h-5" />
             </button>
             <div className="flex flex-col items-center gap-10 w-full max-w-4xl px-4">
-              <p className="text-white/50 text-xs uppercase tracking-widest">MY WORK</p>
+              <p className="text-white/50 text-xs uppercase mt-10 tracking-widest">MY WORK</p>
               <h2 className="text-3xl md:text-4xl font-[400] font-poppins text-center text-white">
                 {project.title}
               </h2>
