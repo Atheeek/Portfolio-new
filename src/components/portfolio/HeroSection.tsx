@@ -17,7 +17,7 @@ interface NavBarProps {
 const NavBar: React.FC<NavBarProps> = ({ onMenuClick, isMenuOpen }) => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 rounded-b-[50px] pt-2 backdrop-blur-md bg-black border-b border-white/10 mx-4 md:mx-20">
-      <div className="container mx-auto flex items-center justify-between px-6 py-4 lg:px-8">
+      <div className="container mx-auto flex items-center justify-between px-6 py-4 md:py-1 lg:px-8">
         <div className="hidden items-center gap-2 md:flex">
           <div className="h-2 w-2 rounded-full bg-[rgb(133,238,0)]"></div>
           <span className="text-[18px] text-white/70">Los Angeles, CA</span>
