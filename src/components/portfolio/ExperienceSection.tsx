@@ -76,7 +76,8 @@ const ExperienceSection = () => {
                 <div className='mb-8 lg:mb-0'>
                     <p className="text-white/50 text-sm uppercase tracking-wider mb-4">EXPERIENCE</p>
                      <button className="group flex items-center justify-between p-2 pl-6 border border-white/20 rounded-full hover:bg-white/5 transition-colors duration-300">
-                        <span className="text-white text-lg pr-4">See my LinkedIn</span>
+                       <a href="https://www.linkedin.com/in/mahammad-atheek-rahman/"  className="text-white text-lg pr-4">See my LinkedIn</a>
+                        {/* <span className="text-white text-lg pr-4">See my LinkedIn</span> */}
                         <div className="w-12 h-12 flex items-center justify-center bg-neutral-800 rounded-full group-hover:bg-neutral-700 transition-colors duration-300">
                             <ArrowRight className="w-5 h-5 text-white" />
                         </div>

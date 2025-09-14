@@ -163,7 +163,6 @@ const HeroSection: React.FC = () => {
                 <ArrowDown className="w-4 text-white h-4" />
               </div>
               <div className="space-y-4 w-full">
-               // "View My Works" button becomes a link to the #projects section
                 <a
                   href="#projects"
                   className="group w-full flex items-center justify-between p-2 pl-6 border border-white/20 rounded-full hover:bg-white/5 transition-colors duration-300"
