@@ -1,37 +1,46 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
-import laptopMockup1 from '@/assets/laptop-mockup.jpg';
-import laptopMockup2 from '@/assets/laptop-mockup.jpg';
-import laptopMockup3 from '@/assets/laptop-mockup.jpg';
+import cmsImage from '@/assets/cms.png';
+import cognifyImage from '@/assets/cognify.png';
+import igadsEcomImage from '@/assets/igadsstore.png';
+import igadsLandingImage from '@/assets/igaads.png';
+import schoolImage from '@/assets/school.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ProjectsSection = () => {
   const projects = [
-    { id: 1, title: 'Runes Studio Web Design', image: laptopMockup1, tags: ['UI/UX', 'Visual Identity', 'Art Direction'], date: '3/2025', company: 'EMOTIVE INC' },
-    { id: 2, title: 'Digital Banking Platform', image: laptopMockup2, tags: ['UI/UX', 'Mobile Design', 'Fintech'], date: '2/2025', company: 'FINTECH CORP' },
-    { id: 3, title: 'E-commerce Experience', image: laptopMockup3, tags: ['Visual Identity', 'Web Design', 'Next.js'], date: '1/2025', company: 'RETAIL BRAND' }
+    { id: 1, title: 'Complaint Management System', image: cmsImage, tags: ['React.js', 'TailwindCSS', 'GoogleMap API', 'Node.js','mongoDB'], date: '2025', company: 'SmartCity CMS', github: 'https://github.com/yourusername/complaint-management-system' },
+    { id: 2, title: 'Cognify – Child Learning & Screening Platform', image: cognifyImage, tags: ['React.js', 'JWT Webtokens', 'Gamified Learning', 'AI Chatbot', 'Node.js','mongoDB', 'express'], date: '2025', company: 'Cognify', github: 'https://github.com/yourusername/cognify' },
+    { id: 3, title: 'IGADS E-commerce Website', image: igadsEcomImage, tags: ['Shopify'], date: '2024', company: 'IGADS', github: 'https://github.com/yourusername/igads-ecommerce' },
+    { id: 4, title: 'IGADS Landing Page', image: igadsLandingImage, tags: ['Typescript', 'TailwindCSS', '3D Animations', 'framer-motion'], date: '2024', company: 'IGADS', github: 'https://github.com/yourusername/igads-landing' },
+    { id: 5, title: 'Modern School Website', image: schoolImage, tags: ['Typescript', 'TailwindCSS', 'Responsive UI'], date: '2023', company: 'School Project', github: 'https://github.com/yourusername/school-website' },
   ];
 
   const componentRef = useRef(null);
   const slidesRef = useRef<HTMLDivElement[]>([]);
 
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [hovering, setHovering] = useState(false);
+  const cursorRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    setCursorPos({ x: e.clientX, y: e.clientY });
+  };
+
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       const slides = slidesRef.current;
-      
-      // Create a single timeline for all slide animations
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: componentRef.current,
           start: 'top top',
-          end: () => `+=${(slides.length - 1) * 1000}`, // Pin for 1000px of scroll per slide
+          end: () => `+=${(slides.length - 1) * 1000}`,
           pin: true,
-          scrub: true, // Smoothly link animation to scroll
-          // Optional: Add snap for a cleaner feel
+          scrub: true,
           snap: {
             snapTo: 1 / (slides.length - 1),
             duration: 0.3,
@@ -39,54 +48,60 @@ const ProjectsSection = () => {
           },
         }
       });
-
-      // Add animations to the timeline for each slide (except the first one)
       slides.forEach((slide, i) => {
         if (i > 0) {
-          tl.from(slide, {
-            yPercent: 100, // Animate from bottom
-            ease: 'none',
-          }, '<'); // '<' makes each animation start at the same time on the timeline
+          tl.from(slide, { yPercent: 100, ease: 'none' });
         }
       });
-      // By default, the timeline spaces animations out. 
-      // We are essentially layering the animations on top of each other.
-      // As the timeline progresses (via scrolling), each slide completes its journey from bottom to top.
-
     }, componentRef);
-
     return () => ctx.revert();
   }, []);
 
+  useLayoutEffect(() => {
+    if (cursorRef.current) {
+      gsap.to(cursorRef.current, {
+        x: cursorPos.x - 48,
+        y: cursorPos.y - 48,
+        duration: 0.2,
+        ease: 'power2.out',
+      });
+    }
+  }, [cursorPos]);
+
   return (
-    <section ref={componentRef} className="relative h-screen bg-black text-white overflow-hidden">
-      {projects.map((project, index) => (
+    <section
+      ref={componentRef}
+      // FIX 1: Set a simple, solid background color on the main container.
+      className="relative h-screen text-white overflow-hidden font-poppins bg-black"
+      onMouseMove={handleMouseMove}
+    >
+      {hovering && (
+        <div ref={cursorRef} className="fixed pointer-events-none z-50 w-24 h-24 rounded-full flex items-center justify-center bg-white/10 backdrop-blur-sm">
+          <ArrowUpRight className="w-8 h-8 text-white" />
+        </div>
+      )}
+
+      {projects.map((project) => (
         <div
           key={project.id}
-          ref={(el) => (slidesRef.current[index] = el!)}
-          // All slides are now absolutely positioned to stack on top of each other
-          className="absolute inset-0 h-full w-full bg-black flex items-center justify-center"
+          ref={(el) => (slidesRef.current[project.id - 1] = el!)}
+          // FIX 2: Moved the opaque gradient background here so each slide covers the previous one.
+          className="absolute inset-0 h-full w-full flex items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-800 to-black"
         >
           <div className="relative h-full w-full flex items-center justify-center">
-            {/* Metadata */}
             <div className="absolute top-1/2 -translate-y-1/2 left-8 md:left-16 text-white/50 text-sm hidden md:block"><p>DATE: {project.date}</p></div>
             <div className="absolute top-1/2 -translate-y-1/2 right-8 md:right-16 text-white/50 text-sm hidden md:block"><p>{project.company}</p></div>
-
-            {/* Arrows */}
             <button className="absolute top-1/2 -translate-y-1/2 left-4 md:left-8 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"><ChevronLeft className="w-5 h-5" /></button>
             <button className="absolute top-1/2 -translate-y-1/2 right-4 md:right-8 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"><ChevronRight className="w-5 h-5" /></button>
-
-            {/* Main Content */}
+            
             <div className="flex flex-col items-center gap-10 w-full max-w-4xl px-4">
               <p className="text-white/50 text-xs uppercase tracking-widest">MY WORK</p>
-              <h2 className="text-3xl md:text-5xl  text-center text-white">{project.title}</h2>
-              
-              <div className="w-full max-w-2xl bg-black/20 backdrop-blur-md border border-white/10 rounded-3xl p-4 md:p-6">
-                 <div className="aspect-video w-full overflow-hidden rounded-xl">
-                    <img src={project.image} alt={project.title} className="w-full h-full object-cover"/>
-                 </div>
-              </div>
-
+              <h2 className="text-3xl md:text-5xl font-medium text-center text-white">{project.title}</h2>
+              <a href={project.github} target="_blank" rel="noopener noreferrer" className="w-full max-w-3xl bg-white/[.03] rounded-3xl border border-white/10 p-2 shadow-[0_0_80px_rgba(255,255,255,0.08)] backdrop-blur-sm cursor-none" onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}>
+                <div className="aspect-video w-full overflow-hidden rounded-2xl">
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                </div>
+              </a>
               <div className="flex flex-wrap gap-3 justify-center">
                 {project.tags.map(tag => (
                   <span key={tag} className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-white/80">{tag}</span>
@@ -96,7 +111,6 @@ const ProjectsSection = () => {
           </div>
         </div>
       ))}
-      {/* NO SPACER DIV NEEDED */}
     </section>
   );
 };

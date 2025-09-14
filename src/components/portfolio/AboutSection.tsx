@@ -1,5 +1,5 @@
 import { Linkedin, Github, X } from 'lucide-react';
-import aboutPortrait from '@/assets/Gemini_Generated_Image_dadhyldadhyldadh.png'; // Replace with your actual portrait
+import aboutPortrait from '@/assets/atheek.png'; // Replace with your actual portrait
 
 const AboutSection = () => {
   return (
