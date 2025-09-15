@@ -10,6 +10,25 @@ html {
   scroll-behavior: smooth;
 }
 
+@keyframes worldMapFloat {
+          0%, 100% { 
+            transform: translateY(0px) translateX(0px); 
+            opacity: 0.08;
+          }
+          25% { 
+            transform: translateY(-10px) translateX(5px); 
+            opacity: 0.12;
+          }
+          50% { 
+            transform: translateY(-5px) translateX(-3px); 
+            opacity: 0.06;
+          }
+          75% { 
+            transform: translateY(-15px) translateX(8px); 
+            opacity: 0.1;
+          }
+        }
+
 @layer base {
   :root {
     /* Portfolio Color Palette */
