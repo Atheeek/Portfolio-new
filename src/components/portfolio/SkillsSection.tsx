@@ -1,10 +1,10 @@
 const SkillsSection = () => {
   const skills = [
-    { name: 'Figma', level: 98, color: 'neon' },
-    { name: 'Webflow', level: 86, color: 'neon' },
-    { name: 'Framer', level: 90, color: 'neon' },
-    { name: 'Premiere', level: 80, color: 'neon' },
-    { name: 'PS', level: 75, color: 'neon' }
+    { name: 'React', level: 98, color: 'neon' },
+    { name: 'Javascript', level: 86, color: 'neon' },
+    { name: 'TailwindCSS', level: 90, color: 'neon' },
+    { name: 'Node.js', level: 80, color: 'neon' },
+    { name: 'MongoDB', level: 75, color: 'neon' }
   ];
 
   return (
@@ -59,7 +59,7 @@ const SkillsSection = () => {
               </p>
               
               <div className="flex flex-wrap justify-center gap-3 mt-8">
-                {['Adobe XD', 'Sketch', 'Principle', 'After Effects', 'Illustrator', 'InDesion', 'Protopie', 'Blender'].map((skill, index) => (
+                {['mySQL', 'Rest API', 'Express', 'Docker', 'CI-CD', 'Git'].map((skill, index) => (
                   <span 
                     key={skill}
                     className="px-4 py-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-white/70 text-sm hover:bg-neon/10 hover:border-neon/20 hover:text-neon transition-all duration-300"

@@ -4,10 +4,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import Lenis from 'lenis';
 
-import cmsImage from '@/assets/cms.png';
+import cmsImage from '@/assets/cms1.png';
 import cognifyImage from '@/assets/cognify.png';
-import igadsEcomImage from '@/assets/igadsstore.png';
-import igadsLandingImage from '@/assets/igaads.png';
+import igadsEcomImage from '@/assets/igads4.png';
+import igadsLandingImage from '@/assets/igads5.png';
 import schoolImage from '@/assets/school.png';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -104,14 +104,14 @@ const ProjectsSection = () => {
           className="absolute inset-0 h-full w-full flex items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-800 to-black"
         >
           <div className="relative h-full w-full flex items-center justify-center">
-            <div className="absolute top-1/2 -translate-y-1/2 left-8 md:left-16 text-white/50 text-sm hidden md:block">
+            <div className="absolute ml-5 top-1/2 -translate-y-1/2 left-8 md:left-16 text-white/50 text-sm hidden md:block">
               <p>DATE: {project.date}</p>
             </div>
-            <div className="absolute top-1/2 -translate-y-1/2 right-8 md:right-16 text-white/50 text-sm hidden md:block">
+            <div className="absolute mr-5 top-1/2 -translate-y-1/2 right-8 md:right-16 text-white/50 text-sm hidden md:block">
               <p>{project.company}</p>
             </div>
-            <button className="absolute top-1/2 -translate-y-1/2 left-4 md:left-8 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-              <ChevronLeft className="w-5 h-5" />
+            <button className="absolute  top-1/2 -translate-y-1/2 left-4 md:left-8 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+              <ChevronLeft className=" w-5 h-5" />
             </button>
             <button className="absolute top-1/2 -translate-y-1/2 right-4 md:right-8 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
               <ChevronRight className="w-5 h-5" />
@@ -125,11 +125,11 @@ const ProjectsSection = () => {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full max-w-2xl bg-white/[.03] rounded-3xl border border-white/10 p-2 shadow-[0_0_80px_rgba(255,255,255,0.08)] backdrop-blur-sm cursor-none"
+                className="w-full max-w-2xl bg-white/[.03] rounded-2xl border border-white/10  shadow-[0_0_80px_rgba(255,255,255,0.08)] backdrop-blur-sm cursor-none"
                 onMouseEnter={() => setHovering(true)}
                 onMouseLeave={() => setHovering(false)}
               >
-                <div className="aspect-video w-full overflow-hidden rounded-2xl">
+                <div className="aspect-video w-full overflow-hidden rounded-xl">
                   <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
                 </div>
               </a>
