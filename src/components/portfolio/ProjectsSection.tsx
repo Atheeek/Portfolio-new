@@ -26,16 +26,24 @@ const ProjectsSection = () => {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [hovering, setHovering] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
+  const lenisRef = useRef<Lenis | null>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     setCursorPos({ x: e.clientX, y: e.clientY });
   };
 
   useLayoutEffect(() => {
-    const lenis = new Lenis();
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true
+    });
+
+    lenisRef.current = lenis;
 
     function raf(time: number) {
       lenis.raf(time);
+      ScrollTrigger.update();
       requestAnimationFrame(raf);
     }
 
@@ -43,6 +51,7 @@ const ProjectsSection = () => {
 
     return () => {
       lenis.destroy();
+      lenisRef.current = null;
     }
   }, []);
 
@@ -55,20 +64,23 @@ const ProjectsSection = () => {
           start: 'top top',
           end: () => `+=${(slides.length - 1) * 1000}`,
           pin: true,
-          scrub: 1,
+          scrub: 0.5,
           snap: {
             snapTo: 1 / (slides.length - 1),
-            duration: 0.3,
-            ease: 'power1.inOut',
+            duration: 0.5,
+            ease: 'power2.inOut',
+            delay: 0.1
           },
+          invalidateOnRefresh: true
         }
       });
       slides.forEach((slide, i) => {
         if (i > 0) {
-          tl.from(slide, { yPercent: 100, ease: 'none' });
+          tl.from(slide, { yPercent: 100, ease: 'power2.inOut' });
         }
       });
     }, componentRef);
+
     return () => ctx.revert();
   }, []);
 
