@@ -57,13 +57,13 @@ const TestimonialsSection = () => {
   return (
     <section className="bg-black section-padding hero-bg-animation relative overflow-hidden">
       
-      {/* 1. Map is now lower on mobile (items-end) and centered on desktop (md:items-center) */}
       <div
         className="absolute inset-0 z-0 opacity-20 flex justify-center items-end md:items-center"
       >
-        {/* 2. Map is now bigger on mobile and constrained on desktop (md:max-w-6xl) */}
+        {/* === THE ONLY CHANGE IS ON THIS LINE === */}
+        {/* Added translate-y-1/3 to push it down on mobile, and md:translate-y-0 to reset on desktop */}
         <div 
-          className="w-full h-full max-w-full max-h-full md:max-w-6xl md:max-h-6xl bg-center bg-contain bg-no-repeat"
+          className="w-full h-full max-w-full max-h-full md:max-w-6xl md:max-h-6xl bg-center bg-contain bg-no-repeat translate-y-1/3 md:translate-y-0"
           style={{ backgroundImage: `url(${worldMapBg})` }}
         ></div>
       </div>
@@ -147,7 +147,6 @@ const TestimonialsSection = () => {
             </AnimatePresence>
           </div>
           
-          {/* 3. Arrows are now hidden on mobile (hidden) and visible on desktop (md:flex) */}
           <button
             onClick={prevTestimonial}
             className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/5 border border-white/10 rounded-full items-center justify-center text-white hover:bg-neon hover:text-black transition-all duration-300 z-20 hidden md:flex"
