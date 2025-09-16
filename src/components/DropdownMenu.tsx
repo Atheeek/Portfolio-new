@@ -43,18 +43,19 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ isOpen, onClose }) => {
         <div>
           <p className="text-white/40 text-sm mb-6">Menu</p>
           <div className="grid grid-cols-2 gap-y-4 gap-x-12">
-            <MenuItem icon={Home} text="Home" />
-            <MenuItem icon={Briefcase} text="Services" />
-            <MenuItem icon={LayoutGrid} text="Portfolio" />
-            <MenuItem icon={BarChart2} text="Numeric" />
-            <MenuItem icon={HelpCircle} text="FAQs" />
-            <MenuItem icon={LayoutGrid} text="Experience" />
-            <MenuItem icon={Briefcase} text="What You Get" />
-            <MenuItem icon={Award} text="Awards" />
-            <MenuItem icon={MessageSquare} text="Testimonial" />
-            <MenuItem icon={BadgeDollarSign} text="Pricing" />
-            <MenuItem icon={Send} text="Contact Form" />
-          </div>
+  <MenuItem icon={Home} text="Home" href="#home" />
+  <MenuItem icon={Briefcase} text="Works" href="#projects" />
+  <MenuItem icon={LayoutGrid} text="Portfolio" href="#portfolio" />
+  {/* <MenuItem icon={BarChart2} text="Numeric" href="#numeric" /> */}
+  {/* <MenuItem icon={HelpCircle} text="FAQs" href="#faqs" /> */}
+  <MenuItem icon={LayoutGrid} text="Experience" href="#experience" />
+  {/* <MenuItem icon={Briefcase} text="What You Get" href="#what-you-get" /> */}
+  {/* <MenuItem icon={Award} text="Awards" href="#awards" /> */}
+  <MenuItem icon={MessageSquare} text="Testimonial" href="#testimonials" />
+  {/* <MenuItem icon={BadgeDollarSign} text="Pricing" href="#pricing" /> */}
+  <MenuItem icon={Send} text="Contact Form" href="#contact" />
+</div>
+
         </div>
 
         {/* Social Network Section */}

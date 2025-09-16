@@ -51,7 +51,7 @@ const TestimonialsSection = () => {
   }, []); // run once only
 
   return (
-    <section id='testimonials' className="bg-black section-padding hero-bg-animation relative overflow-hidden">
+    <section id='testimonials' className="bg-black section-padding  relative overflow-hidden">
       <div
         className="absolute inset-0 z-0 opacity-20 flex justify-center items-end md:items-center"
       >
@@ -131,13 +131,13 @@ const TestimonialsSection = () => {
           
           <button
             onClick={prevTestimonial}
-            className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/5 border border-white/10 rounded-full items-center justify-center text-white hover:bg-neon hover:text-black transition-all duration-300 z-20 hidden md:flex"
+            className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10  border border-white/10 rounded-full items-center justify-center text-white hover:bg-neon hover:text-black transition-all duration-300 z-20 hidden md:flex"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={nextTestimonial}
-            className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/5 border border-white/10 rounded-full items-center justify-center text-white hover:bg-neon hover:text-black transition-all duration-300 z-20 hidden md:flex"
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10  border border-white/10 rounded-full items-center justify-center text-white hover:bg-neon hover:text-black transition-all duration-300 z-20 hidden md:flex"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
