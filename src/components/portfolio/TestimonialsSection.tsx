@@ -1,9 +1,7 @@
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-// Import your map image from its location
-import worldMapBg from '@/assets/world-map.png'; // <-- ADJUST THE PATH IF NEEDED
+import worldMapBg from '@/assets/world-map.png';
 
 const TestimonialsSection = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -15,7 +13,7 @@ const TestimonialsSection = () => {
       role: 'Freelancer',
       company: 'italic',
       rating: 5,
-      text: 'Working with Portz was a game-changer for our platform. Their UI/UX design expertise transformed our clunky website into a smooth, intuitive experience.',
+      text: 'Working with Atheek was a game-changer for our platform. Their UI/UX design expertise transformed our clunky website into a smooth, intuitive experience.',
       avatar: null
     },
     {
@@ -24,7 +22,7 @@ const TestimonialsSection = () => {
       role: 'Product Manager',
       company: 'TechCorp',
       rating: 5,
-      text: 'Alexander\'s attention to detail and creative vision exceeded our expectations. The visual identity he created perfectly captured our brand essence.',
+      text: 'Atheek\'s attention to detail and creative vision exceeded our expectations. The visual identity he created perfectly captured our brand essence.',
       avatar: null
     },
     {
@@ -46,22 +44,17 @@ const TestimonialsSection = () => {
     setActiveTestimonial((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
   };
 
+  // ✅ Fix interval for smooth autoplay on mobile
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextTestimonial();
-    }, 5000); 
+    const interval = setInterval(nextTestimonial, 5000);
     return () => clearInterval(interval);
-  }, [activeTestimonial]);
-
+  }, []); // run once only
 
   return (
-    <section className="bg-black section-padding hero-bg-animation relative overflow-hidden">
-      
+    <section id='testimonials' className="bg-black section-padding hero-bg-animation relative overflow-hidden">
       <div
         className="absolute inset-0 z-0 opacity-20 flex justify-center items-end md:items-center"
       >
-        {/* === THE ONLY CHANGE IS ON THIS LINE === */}
-        {/* Added translate-y-1/3 to push it down on mobile, and md:translate-y-0 to reset on desktop */}
         <div 
           className="w-full h-full max-w-full max-h-full md:max-w-6xl md:max-h-6xl bg-center bg-contain bg-no-repeat translate-y-1/3 md:translate-y-0"
           style={{ backgroundImage: `url(${worldMapBg})` }}
@@ -82,29 +75,24 @@ const TestimonialsSection = () => {
               <motion.div
                 key={activeTestimonial}
                 className="absolute inset-0 flex items-center justify-center"
-                initial={{ x: 300, opacity: 0 }}
+                initial={{ x: window.innerWidth < 768 ? 100 : 300, opacity: 0 }} // smaller distance on mobile
                 animate={{ x: 0, opacity: 1 }}
-                exit={{ x: -300, opacity: 0 }}
+                exit={{ x: window.innerWidth < 768 ? -100 : -300, opacity: 0 }}
                 transition={{ type: 'spring', stiffness: 260, damping: 30 }}
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
                 onDragEnd={(_, info) => {
-                  if (info.offset.x < -50) {
-                    nextTestimonial();
-                  } else if (info.offset.x > 50) {
-                    prevTestimonial();
-                  }
+                  if (info.offset.x < -50) nextTestimonial();
+                  else if (info.offset.x > 50) prevTestimonial();
                 }}
               >
-                {/* Previous Testimonial (Visible on the left) */}
-                <div className="absolute left-0 transform -translate-x-full scale-75 opacity-40">
-                    <div className="w-96">
-                        <div className="portfolio-card text-center relative p-4">
-                        </div>
-                    </div>
+                {/* Left & Right placeholders hidden on mobile */}
+                <div className="hidden md:block absolute left-0 transform -translate-x-full scale-75 opacity-40">
+                  <div className="w-96">
+                      <div className="portfolio-card text-center relative p-4"></div>
+                  </div>
                 </div>
 
-                {/* Main Active Testimonial Card */}
                 <div className="w-full max-w-3xl">
                   <div className="portfolio-card text-center relative">
                     <div className="flex justify-center gap-1 mb-8">
@@ -125,23 +113,17 @@ const TestimonialsSection = () => {
                         </span>
                       </div>
                       <div className="text-left text-sm">
-                        <div className="text-white font-[400] ">
-                          {testimonials[activeTestimonial].name}
-                        </div>
-                        <div className="text-white/60">
-                          {testimonials[activeTestimonial].role}
-                        </div>
+                        <div className="text-white font-[400] ">{testimonials[activeTestimonial].name}</div>
+                        <div className="text-white/60">{testimonials[activeTestimonial].role}</div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                 {/* Next Testimonial (Visible on the right) */}
-                 <div className="absolute right-0 transform translate-x-full scale-75 opacity-40">
-                    <div className="w-96">
-                        <div className="portfolio-card text-center relative p-4">
-                        </div>
-                    </div>
+                <div className="hidden md:block absolute right-0 transform translate-x-full scale-75 opacity-40">
+                  <div className="w-96">
+                      <div className="portfolio-card text-center relative p-4"></div>
+                  </div>
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -160,7 +142,6 @@ const TestimonialsSection = () => {
             <ChevronRight className="w-5 h-5" />
           </button>
 
-          {/* Navigation Dots */}
           <div className="flex items-center justify-center gap-3 mt-12">
             {testimonials.map((_, index) => (
               <button

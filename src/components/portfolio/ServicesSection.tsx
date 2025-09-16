@@ -1,88 +1,121 @@
-import heartImage from '@/assets/3d-heart.jpg';
+import React from 'react';
+import { CircularGallery, GalleryItem } from '@/components/ui/circular-gallery';
 
-const ServicesSection = () => {
+const galleryData: GalleryItem[] = [
+  {
+    common: 'Lion',
+    binomial: 'Panthera leo',
+    photo: {
+      url: 'https://images.unsplash.com/photo-1583499871880-de841d1ace2a?w=900&auto=format&fit=crop&q=80',
+      text: 'lion couple kissing on a brown rock',
+      pos: '47% 35%',
+      by: 'Clément Roy'
+    }
+  },
+  {
+    common: 'Asiatic elephant',
+    binomial: 'Elephas maximus',
+    photo: {
+      url: 'https://images.unsplash.com/photo-1571406761758-9a3eed5338ef?w=900&auto=format&fit=crop&q=80',
+      text: 'herd of Sri Lankan elephants walking away from a river',
+      pos: '75% 65%',
+      by: 'Alex Azabache'
+    }
+  },
+  {
+    common: 'Red-tailed black cockatoo',
+    binomial: 'Calyptorhynchus banksii',
+    photo: {
+      url: 'https://images.unsplash.com/photo-1619664208054-41eefeab29e9?w=900&auto=format&fit=crop&q=80',
+      text: 'close-up of a black cockatoo',
+      pos: '53% 43%',
+      by: 'David Clode'
+    }
+  },
+  {
+    common: 'Dromedary',
+    binomial: 'Camelus dromedarius',
+    photo: {
+      url: 'https://images.unsplash.com/photo-1662841238473-f4b137e123cb?w=900&auto=format&fit=crop&q=80',
+      text: 'camel and her new born calf walking in the Sahara desert',
+      pos: '65% 65%',
+      by: 'Moaz Tobok'
+    }
+  },
+  {
+    common: 'Polar bear',
+    binomial: 'Ursus maritimus',
+    photo: {
+      url: 'https://images.unsplash.com/photo-1589648751789-c8ecb7a88bd5?w=900&auto=format&fit=crop&q=80',
+      text: 'polar bear on the snow, by the water, raised on the hind legs, front paws together',
+      pos: '50% 25%',
+      by: 'Hans-Jurgen Mager'
+    }
+  },
+  {
+    common: 'Giant panda',
+    binomial: 'Ailuropoda melanoleuca',
+    photo: {
+      url: 'https://images.unsplash.com/photo-1659540181281-1d89d6112832?w=900&auto=format&fit=crop&q=80',
+      text: 'giant panda hanging from a tree branch',
+      pos: '47%',
+      by: 'Jiachen Lin'
+    }
+  },
+  {
+    common: 'Grévy\'s zebra',
+    binomial: 'Equus grevyi',
+    photo: {
+      url: 'https://images.unsplash.com/photo-1526095179574-86e545346ae6?w=900&auto=format&fit=crop&q=80',
+      text: 'zebra standing on wheat field, looking back towards the camera',
+      pos: '65% 35%',
+      by: 'Jeff Griffith'
+    }
+  },
+  {
+    common: 'Cheetah',
+    binomial: 'Acinonyx jubatus',
+    photo: {
+      url: 'https://images.unsplash.com/photo-1541707519942-08fd2f6480ba?w=900&auto=format&fit=crop&q=80',
+      text: 'cheetah sitting in the grass under a blue sky',
+      by: 'Mike Bird'
+    }
+  },
+  {
+    common: 'King penguin',
+    binomial: 'Aptenodytes patagonicus',
+    photo: {
+      url: 'https://images.unsplash.com/photo-1595792419466-23cec2476fa6?w=900&auto=format&fit=crop&q=80',
+      text: 'king penguin with a fluffy brown chick on grey rocks',
+      pos: '35%',
+      by: 'Martin Wettstein'
+    }
+  },
+  {
+    common: 'Red panda',
+    binomial: 'Ailurus fulgens',
+    photo: {
+      url: 'https://images.unsplash.com/photo-1689799513565-44d2bc09d75b?w=900&auto=format&fit=crop&q=80',
+      text: 'a red panda in a tree',
+      by: 'Niels Baars'
+    }
+  },
+];
+
+export default function GalleryPage() {
   return (
-    <section className="section-padding bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
-      <div className="container-padding">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <p className="text-gray-500 text-sm uppercase tracking-wider mb-4">WHAT YOU GET</p>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
-            I'm a digital products designer and webflow developer that passionate with aesthetic
-          </p>
+    // This outer container provides the scrollable height
+    <div className="w-full bg-background text-foreground" style={{ height: '500vh' }}>
+      {/* This inner container sticks to the top while scrolling */}
+      <div className="w-full h-screen sticky top-0 flex flex-col items-center justify-center overflow-hidden">
+        <div className="text-center mb-8 absolute top-16 z-10">
+          {/* <h1 className="text-4xl font-bold">Animal Gallery</h1>
+          <p className="text-muted-foreground">Scroll to rotate the gallery</p> */}
         </div>
-
-        {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left - 3D Heart Visual */}
-          <div className="relative flex justify-center">
-            <div className="relative w-96 h-96">
-              {/* Outer Circle */}
-              <div className="absolute inset-0 rounded-full border border-gray-200"></div>
-              
-              {/* Inner Content Circle */}
-              <div className="absolute inset-8 rounded-full bg-black overflow-hidden">
-                <img 
-                  src={heartImage} 
-                  alt="Futuristic 3D Heart - Premium Design Services" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* Floating Elements */}
-              <div className="absolute top-4 right-8 w-3 h-3 bg-gray-300 rounded-full"></div>
-              <div className="absolute bottom-12 left-4 w-2 h-2 bg-gray-400 rounded-full"></div>
-              <div className="absolute top-1/3 left-0 w-1 h-1 bg-gray-300 rounded-full"></div>
-            </div>
-          </div>
-
-          {/* Right - Services Content */}
-          <div className="space-y-8">
-            <div className="relative">
-              {/* Large Background Circle */}
-              <div className="absolute -top-16 -right-16 w-96 h-96 rounded-full border border-gray-200/50 -z-10"></div>
-              
-              <div className="relative bg-white rounded-full p-8 inline-block mb-6">
-                <span className="text-gray-600 text-sm">● You will get</span>
-              </div>
-
-              <h2 className="text-5xl lg:text-6xl font-bold text-black leading-tight mb-6">
-                All-in-one<br/>
-                Services
-              </h2>
-
-              <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                Transforming Visions into Visual Excellence:
-              </p>
-
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-2 h-2 bg-neon rounded-full"></div>
-                  <span className="text-gray-700 font-medium">UI/UX Design & Research</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-2 h-2 bg-neon rounded-full"></div>
-                  <span className="text-gray-700 font-medium">Visual Identity & Branding</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-2 h-2 bg-neon rounded-full"></div>
-                  <span className="text-gray-700 font-medium">Webflow Development</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-2 h-2 bg-neon rounded-full"></div>
-                  <span className="text-gray-700 font-medium">Art Direction</span>
-                </div>
-              </div>
-
-              <button className="mt-8 bg-black text-white px-8 py-4 rounded-full hover:bg-neon hover:text-black transition-all duration-300 font-medium">
-                View All Services
-              </button>
-            </div>
-          </div>
+        <div className="w-full h-full">
+          <CircularGallery items={galleryData} />
         </div>
       </div>
-    </section>
+    </div>
   );
-};
-
-export default ServicesSection;
+}

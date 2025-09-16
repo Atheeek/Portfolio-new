@@ -1,10 +1,11 @@
 const FooterSection = () => {
-  const currentTime = new Date().toLocaleTimeString('en-US', {
-    hour: '2-digit',
-    minute: '2-digit',
-    timeZone: 'America/Los_Angeles',
-    hour12: false
-  });
+const currentTime = new Date().toLocaleTimeString('en-US', {
+  hour: '2-digit',
+  minute: '2-digit',
+  timeZone: 'Asia/Kolkata',
+  hour12: false
+});
+
 
   return (
     <footer id="contact" className="section-padding hero-bg-animation relative overflow-hidden border-t border-white/10">
@@ -21,7 +22,7 @@ const FooterSection = () => {
                 href="mailto:hello@portz.design" 
                 className="text-2xl lg:text-3xl font-light text-white hover:text-neon transition-colors duration-300 block"
               >
-                hello@portz.design
+                atheek163@gmail.com
               </a>
               
               <div className="space-y-3 text-white/60">
@@ -39,7 +40,7 @@ const FooterSection = () => {
           <div>
             <h4 className="text-white/50 text-sm uppercase tracking-wider mb-6">Menu</h4>
             <nav className="space-y-4">
-              {['Home', 'Services', 'Works', 'Approach', 'Testimonials', 'Contact'].map((item) => (
+              {['Hero', 'Services', 'Works', 'Approach', 'Testimonials', 'Contact'].map((item) => (
                 <a 
                   key={item}
                   href={`#${item.toLowerCase()}`} 
@@ -52,22 +53,25 @@ const FooterSection = () => {
 
             <div className="mt-8">
               <h4 className="text-white/50 text-sm uppercase tracking-wider mb-6">Socials</h4>
-              <div className="space-y-4">
-                {[
-                  { name: 'Twitter (X)', handle: '@portz_design' },
-                  { name: 'LinkedIn', handle: 'alexander-portz' },
-                  { name: 'Dribbble', handle: 'portz' },
-                  { name: 'Behance', handle: 'alexanderportz' }
-                ].map((social) => (
-                  <a 
-                    key={social.name}
-                    href="#" 
-                    className="block text-white/70 hover:text-neon transition-colors duration-300"
-                  >
-                    {social.name}
-                  </a>
-                ))}
-              </div>
+             <div className="space-y-4">
+  {[
+    { name: 'Twitter (X)', url: 'https://x.com/Atheek163' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/mahammad-atheek-rahman/' },
+    { name: 'Instagram', url: 'https://instagram.com/atheekrhmn' },
+    { name: 'Github', url: 'https://github.com/Atheeek' }
+  ].map((social) => (
+    <a 
+      key={social.name}
+      href={social.url}
+      target="_blank"           // opens in new tab
+      rel="noopener noreferrer" // security best practice
+      className="block text-white/70 hover:text-neon transition-colors duration-300"
+    >
+      {social.name}
+    </a>
+  ))}
+</div>
+
             </div>
           </div>
 
@@ -77,7 +81,7 @@ const FooterSection = () => {
             <div className="text-2xl font-bold text-white mb-2">
               {currentTime} (GMT -7)
             </div>
-            <p className="text-white/60 mb-8">Los Angeles, California</p>
+            <p className="text-white/60 mb-8">Bangalore, India</p>
 
             {/* Large Brand Name */}
             <div className="mt-16 lg:mt-24">
@@ -93,7 +97,7 @@ const FooterSection = () => {
 
         {/* Bottom Bar */}
         <div className="flex flex-col lg:flex-row justify-between items-center pt-12 mt-12 border-t border-white/10">
-          <p className="text-white/50 text-sm">© Portz 2025</p>
+          <p className="text-white/50 text-sm">© Atheek 2025</p>
           
           <div className="flex gap-8 mt-4 lg:mt-0">
             <a href="#" className="text-white/50 hover:text-neon transition-colors duration-300 text-sm">
@@ -106,9 +110,9 @@ const FooterSection = () => {
 
           {/* Lovable Badge */}
           <div className="mt-4 lg:mt-0 text-xs text-white/30">
-            <span>Built with</span>
+            <span>Built by</span>
             <a href="https://lovable.dev" className="text-neon hover:text-neon-soft transition-colors duration-300 ml-1">
-              Lovable
+              Atheek
             </a>
           </div>
         </div>

@@ -20,7 +20,7 @@ const NavBar: React.FC<NavBarProps> = ({ onMenuClick, isMenuOpen }) => {
       <div className="container mx-auto flex items-center justify-between px-6 py-4 md:py-1 lg:px-8">
         <div className="hidden items-center gap-2 md:flex">
           <div className="h-2 w-2 rounded-full bg-[rgb(133,238,0)]"></div>
-          <span className="text-[18px] text-white/70">Los Angeles, CA</span>
+          <span className="text-[18px] text-white/70">Bangalore, India</span>
         </div>
         <div className="flex items-center">
           <a href="#hero">
