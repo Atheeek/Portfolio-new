@@ -10,6 +10,11 @@ html {
   scroll-behavior: smooth;
 }
 
+.absolute:hover .text-gray-600 {
+          color: #9ca3af;
+          transition: color 0.3s ease;
+        }
+
 @keyframes worldMapFloat {
           0%, 100% { 
             transform: translateY(0px) translateX(0px); 

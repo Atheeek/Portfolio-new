@@ -1,10 +1,10 @@
 const SkillsSection = () => {
   const skills = [
-    { name: 'React', level: 98, color: 'neon' },
-    { name: 'Javascript', level: 86, color: 'neon' },
-    { name: 'TailwindCSS', level: 90, color: 'neon' },
-    { name: 'Node.js', level: 80, color: 'neon' },
-    { name: 'MongoDB', level: 75, color: 'neon' }
+    { name: 'React', level: 98 },
+    { name: 'Javascript', level: 86 },
+    { name: 'TailwindCSS', level: 90 },
+    { name: 'Node.js', level: 80 },
+    { name: 'MongoDB', level: 75 }
   ];
 
   return (
@@ -18,34 +18,24 @@ const SkillsSection = () => {
       <div className="container-padding relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <p className="text-white/50 text-sm uppercase tracking-wider mb-4">MASTERED SKILL</p>
+          <p className="text-white/50 text-sm uppercase tracking-wider mb-4">
+            MASTERED SKILL
+          </p>
         </div>
 
-        {/* Skills Grid */}
+        {/* Skills Cloud */}
         <div className="max-w-6xl mx-auto">
-          <div className="border border-white/10 rounded-3xl backdrop-blur-sm bg-white/5 p-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-              {skills.map((skill, index) => (
-                <div key={skill.name} className="text-center group">
-                  <div className="relative mb-6">
-                    <div className="text-6xl lg:text-8xl font-bold text-white/10 mb-4 group-hover:text-white/20 transition-colors duration-500">
-                      {skill.name}
-                    </div>
-                    <div className="absolute top-4 right-0 text-neon text-2xl font-bold">
-                      {skill.level}%
-                    </div>
-                  </div>
-                  
-                  {/* Progress Bar */}
-                  <div className="w-full bg-white/10 rounded-full h-2 mb-4">
-                    <div 
-                      className="h-2 bg-gradient-to-r from-neon to-neon-soft rounded-full transition-all duration-1000 ease-out"
-                      style={{ 
-                        width: `${skill.level}%`,
-                        animationDelay: `${index * 200}ms`
-                      }}
-                    ></div>
-                  </div>
+          <div className="border border-white/10 rounded-3xl backdrop-blur-sm bg-white/5 p-16 text-center">
+            <div className="flex flex-wrap justify-center gap-8">
+              {skills.map((skill) => (
+                <div 
+                  key={skill.name} 
+                  className="text-4xl md:text-6xl lg:text-7xl font-bold text-white/80 hover:text-neon transition-colors duration-300"
+                >
+                  {skill.name}
+                  <span className="text-lg md:text-xl font-normal text-white/50 ml-1">
+                    {skill.level}%
+                  </span>
                 </div>
               ))}
             </div>
@@ -59,7 +49,7 @@ const SkillsSection = () => {
               </p>
               
               <div className="flex flex-wrap justify-center gap-3 mt-8">
-                {['mySQL', 'Rest API', 'Express', 'Docker', 'CI-CD', 'Git'].map((skill, index) => (
+                {['mySQL', 'Rest API', 'Express', 'Docker', 'CI/CD', 'Git'].map((skill) => (
                   <span 
                     key={skill}
                     className="px-4 py-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-white/70 text-sm hover:bg-neon/10 hover:border-neon/20 hover:text-neon transition-all duration-300"
