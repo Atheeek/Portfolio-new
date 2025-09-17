@@ -132,9 +132,9 @@ const ContactForm: React.FC = () => {
                 className="w-full border-b border-gray-300 text-black bg-transparent focus:outline-none focus:border-black py-2"
               >
                 <option value="">Select...</option>
-                <option value="web">Web Development</option>
-                <option value="design">UI/UX Design</option>
-                <option value="app">Ecommerce Website</option>
+                <option value="Web Development">Web Development</option>
+                <option value="UI/UX Design">UI/UX Design</option>
+                <option value="Ecommerce Site">Ecommerce Website</option>
               </select>
             </div>
             <div>
@@ -148,9 +148,9 @@ const ContactForm: React.FC = () => {
                 className="w-full border-b border-gray-300 bg-transparent text-black focus:outline-none focus:border-black py-2"
               >
                 <option value="">Select...</option>
-                <option value="low">$1000 - $3000</option>
-                <option value="medium">$3000 - $7000</option>
-                <option value="high">$7000+</option>
+                <option value="$1000 - $3000">$1000 - $3000</option>
+                <option value="$3000 - $7000">$3000 - $7000</option>
+                <option value="$7000+">$7000+</option>
               </select>
             </div>
           </div>

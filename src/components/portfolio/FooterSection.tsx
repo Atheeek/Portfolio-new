@@ -90,7 +90,7 @@ const currentTime = new Date().toLocaleTimeString('en-US', {
             {/* Large Brand Name */}
             <div className="mt-16 lg:mt-24">
               <div className="text-6xl lg:text-8xl font-bold text-white/10 leading-none select-none">
-                Portz
+                rhmn
               </div>
               <div className="text-right mt-4">
                 <span className="text-neon text-sm font-medium">™</span>

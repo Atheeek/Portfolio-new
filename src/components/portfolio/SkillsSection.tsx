@@ -56,7 +56,7 @@ const SkillsSection = () => {
                     <div className="absolute inset-0 flex items-center justify-center">
 <div
   className="
-    bg-black/80 border border-white/10 px-12 py-4
+    bg-black/90 border border-white/10 px-12 py-4
     rounded-full shadow-lg
     transform rotate-[-20deg] flex items-center justify-center
     opacity-0 scale-90
