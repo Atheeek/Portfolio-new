@@ -48,44 +48,6 @@ const FallbackBackground: React.FC = () => (
   </div>
 );
 
-// Animated Letter Component
-const AnimatedLetter: React.FC<{ 
-  letter: string; 
-  delay: number; 
-  className?: string;
-}> = ({ letter, delay, className = "" }) => {
-  return (
-    <span
-      className={`inline-block opacity-0 transform translate-y-4 ${className}`}
-      style={{
-        animation: `letterSlideUp 0.3s ease-out forwards`,
-        animationDelay: `${delay}ms`,
-      }}
-    >
-      {letter === ' ' ? '\u00A0' : letter}
-    </span>
-  );
-};
-
-// Animated Text Component
-const AnimatedText: React.FC<{
-  text: string;
-  startDelay: number;
-  letterDelay: number;
-  className?: string;
-}> = ({ text, startDelay, letterDelay, className = "" }) => {
-  return (
-    <span className={className}>
-      {text.split('').map((letter, index) => (
-        <AnimatedLetter
-          key={index}
-          letter={letter}
-          delay={startDelay + (index * letterDelay)}
-        />
-      ))}
-    </span>
-  );
-};
 
 const Spline = lazy(() => import('@splinetool/react-spline'));
 
@@ -128,33 +90,6 @@ const HeroSection: React.FC = () => {
 
   return (
     <>
-      <style>{`
-        @keyframes letterSlideUp {
-          to {
-            opacity: 1;
-            transform: translate(0, 0);
-          }
-        }
-        
-        @keyframes imageSlideUp {
-          from {
-            opacity: 0;
-            transform: translateY(60px) scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
-        
-        .animate-image-entrance {
-          animation: imageSlideUp 0.8s ease-out forwards;
-          animation-delay: 1200ms;
-          opacity: 0;
-          transform: translateY(60px) scale(0.95);
-        }
-      `}</style>
-
       {/* STEP 3: Attach the ref to the section element */}
       <section ref={heroRef} id='hero' className="relative min-h-screen bg-black text-white overflow-hidden">
         <Suspense fallback={<FallbackBackground />}>
@@ -174,39 +109,13 @@ const HeroSection: React.FC = () => {
             <div className="flex flex-col justify-center lg:order-1">
               <div className="text-left">
                 <p className="text-lg ml-0 md:ml-6 font-light">
-                  <AnimatedText 
-                    text="Hello " 
-                    startDelay={100}
-                    letterDelay={60}
-                    className="text-white/70"
-                  />
-                  <AnimatedText 
-                    text="My name " 
-                    startDelay={500}
-                    letterDelay={60}
-                    className="text-white"
-                  />
-                  <AnimatedText 
-                    text="is" 
-                    startDelay={1000}
-                    letterDelay={60}
-                    className="text-white/70"
-                  />
+                  <span className="text-white/70">Hello </span>
+                  <span className="text-white">My name </span>
+                  <span className="text-white/70">is</span>
                 </p>
                 <h1 className="font-sulphur text-6xl leading-none mt-4 font-normal lg:text-[157px] lg:leading-[128px]">
-                  <AnimatedText 
-                    text="Atheek" 
-                    startDelay={1200}
-                    letterDelay={80}
-                    className="text-[rgb(133,238,0)]"
-                  />
-                  <br />
-                  <AnimatedText 
-                    text="rahman" 
-                    startDelay={1700}
-                    letterDelay={80}
-                    className=""
-                  />
+                  <span className="text-[rgb(133,238,0)]">Atheek</span><br />
+                  <span>rahman</span>
                 </h1>
               </div>
               <div className="hidden lg:flex gap-4 pt-12">
@@ -220,7 +129,7 @@ const HeroSection: React.FC = () => {
               </div>
             </div>
             <div className="relative flex justify-center w-full my-10 lg:my-0 lg:order-2">
-              <div className="relative w-full max-w-sm animate-image-entrance">
+              <div className="relative w-full max-w-sm">
                 <div className="relative w-full aspect-[10/13] rounded-[2rem] overflow-hidden">
                   <img
                     src={heroPortrait}
