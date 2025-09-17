@@ -1,44 +1,28 @@
-import { IconCloud } from "@/components/ui/interactive-icon-cloud"
+// // ExamplePage.tsx
+// import React from 'react';
+// import ScrollStack, { ScrollStackItem } from '../ScrollStackItem';
 
-const slugs = [
-  "typescript",
-  "javascript",
-  "dart",
-  "java",
-  "react",
-  "flutter",
-  "android",
-  "html5",
-  "css3",
-  "nodedotjs",
-  "express",
-  "nextdotjs",
-  "prisma",
-  "amazonaws",
-  "postgresql",
-  "firebase",
-  "nginx",
-  "vercel",
-  "testinglibrary",
-  "jest",
-  "cypress",
-  "docker",
-  "git",
-  "jira",
-  "github",
-  "gitlab",
-  "visualstudiocode",
-  "androidstudio",
-  "sonarqube",
-  "figma",
-]
+// const ExamplePage = () => {
+//   return (
+//     <div className="h-screen w-full bg-gray-900 text-white">
+//       <ScrollStack>
+//         <ScrollStackItem>
+//           <h2 className="text-3xl font-bold">Card 1</h2>
+//           <p>This is the first card in the stack</p>
+//         </ScrollStackItem>
 
-export function IconCloudDemo() {
-  return (
-    <div className="relative flex size-full max-w-lg items-center justify-center overflow-hidden rounded-lg border bg-background px-20 pb-20 pt-8 ">
-      <IconCloud iconSlugs={slugs} />
-    </div>
-  )
-}
+//         <ScrollStackItem>
+//           <h2 className="text-3xl font-bold">Card 2</h2>
+//           <p>This is the second card in the stack</p>
+//         </ScrollStackItem>
 
-export default IconCloudDemo;
+//         <ScrollStackItem>
+//           <h2 className="text-3xl font-bold">Card 3</h2>
+//           <p>This is the third card in the stack</p>
+//         </ScrollStackItem>
+//       </ScrollStack>
+//     </div>
+//   );
+// };
+
+// export default ExamplePage;
