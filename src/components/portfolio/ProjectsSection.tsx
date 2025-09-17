@@ -155,7 +155,7 @@ const ProjectsSection = () => {
             </button>
             <div className="flex flex-col items-center gap-10 w-full max-w-4xl px-4">
               <p className="text-white/50 text-xs uppercase mt-10 tracking-widest">MY WORK</p>
-              <h2 className="text-3xl md:text-4xl font-[400] font-poppins text-center text-white">
+              <h2 className="text-[38px] md:text-[48px] font-[400] font-poppins text-center text-white">
                 {project.title}
               </h2>
               <a
