@@ -13,21 +13,30 @@ interface MenuItemProps {
   onClick?: () => void;
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({ icon: Icon, text, to, onClick }) => (
-  <Link
-    to={to}
-    smooth={true}
-    duration={700}
-    spy={true}
-    offset={-80}
-    onClick={onClick}
-    className="flex items-center gap-4 text-white/80 hover:text-white transition-colors duration-300 group cursor-pointer"
-    activeClass="text-neon font-semibold"
-  >
-    <Icon className="w-5 h-5 text-white/50 group-hover:text-lime-400 transition-colors" />
-    <span>{text}</span>
-  </Link>
-);
+const MenuItem: React.FC<MenuItemProps> = ({ icon: Icon, text, to, onClick }) => {
+  const handleClick = () => {
+    // Add a small delay before closing to allow scroll to start
+    setTimeout(() => {
+      onClick?.();
+    }, 100);
+  };
+
+  return (
+    <Link
+      to={to}
+      smooth={true}
+      duration={500} // Reduced from 700ms for faster scrolling
+      spy={true}
+      offset={-80}
+      onClick={handleClick}
+      className="flex items-center gap-4 text-white/80 hover:text-white transition-colors duration-200 group cursor-pointer will-change-transform"
+      activeClass="text-neon font-semibold"
+    >
+      <Icon className="w-5 h-5 text-white/50 group-hover:text-lime-400 transition-colors duration-200" />
+      <span>{text}</span>
+    </Link>
+  );
+};
 
 // Type for the DropdownMenu's props
 interface DropdownMenuProps {
@@ -39,7 +48,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ isOpen, onClose }) => {
   return (
     <div
       className={`fixed top-28 right-4 md:right-20 w-auto bg-black/70 backdrop-blur-xl border border-white/10 rounded-3xl p-8 z-[60]
-        transition-all duration-300 ease-in-out transform-gpu
+        transition-all duration-200 ease-out transform-gpu will-change-transform
         origin-top-right
         ${isOpen 
           ? 'opacity-100 scale-100' 
@@ -68,21 +77,24 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ isOpen, onClose }) => {
             <a 
               href="https://github.com/Atheeek/City-fix" 
               target="_blank"
-              className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+              rel="noopener noreferrer"
+              className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors duration-200"
             >
               <Github className="w-5 h-5" />
             </a>
             <a 
               href="https://www.instagram.com/atheekrhmn/" 
               target="_blank"
-              className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+              rel="noopener noreferrer"
+              className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors duration-200"
             >
               <Instagram className="w-5 h-5" />
             </a>
             <a 
               href="https://www.linkedin.com/in/mahammad-atheek-rahman/" 
               target="_blank"
-              className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+              rel="noopener noreferrer"
+              className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors duration-200"
             >
               <Linkedin className="w-5 h-5" />
             </a>

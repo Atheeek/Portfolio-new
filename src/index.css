@@ -283,3 +283,11 @@ html {
 }
 
 
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Better hardware acceleration */
+.will-change-transform {
+  will-change: transform;
+}
