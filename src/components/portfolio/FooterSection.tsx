@@ -30,9 +30,13 @@ const currentTime = new Date().toLocaleTimeString('en-US', {
                 <p>Let's create something amazing together.</p>
               </div>
 
-              <button className="bg-neon text-black px-8 py-4 rounded-full hover:bg-neon-soft transition-all duration-300 font-medium mt-6">
-                Start a Project
-              </button>
+              <a 
+  href="mailto:atheek163@gmail.com?subject=Let's%20Start%20a%20Project" 
+  className="bg-neon text-black px-8 py-4 rounded-full hover:bg-neon-soft transition-all duration-300 font-medium mt-6 inline-block text-center"
+>
+  Start a Project
+</a>
+
             </div>
           </div>
 

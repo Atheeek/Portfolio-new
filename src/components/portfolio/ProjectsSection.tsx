@@ -10,6 +10,31 @@ import igadsEcomImage from '@/assets/igads4.png';
 import igadsLandingImage from '@/assets/igads5.png';
 import schoolImage from '@/assets/school.png';
 
+
+export function ThinLongArrowUpRight({ size = 32, className = "" }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 64 64"
+      width={size}
+      height={size}
+      fill="none"
+      className={className}
+      aria-hidden="true"
+    >
+      <g
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <line x1="16" y1="48" x2="48" y2="16" />
+        <path d="M48 36 V16 H28" />
+      </g>
+    </svg>
+  );
+}
+
 gsap.registerPlugin(ScrollTrigger);
 
 const ProjectsSection = () => {
@@ -104,9 +129,9 @@ const ProjectsSection = () => {
       {hovering && (
         <div
           ref={cursorRef}
-          className="fixed pointer-events-none z-50 w-24 h-24 rounded-full flex items-center justify-center bg-white/10 backdrop-blur-sm"
+          className="fixed pointer-events-none z-50 w-28 h-28 rounded-full flex items-center justify-center bg-black/10 backdrop-blur-sm"
         >
-          <ArrowUpRight className="w-8 h-8 text-lime-400"/>
+<ThinLongArrowUpRight size={40} className="text-lime-300" />
         </div>
       )}
       {projects.map((project) => (

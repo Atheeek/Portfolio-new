@@ -3,7 +3,7 @@ import aboutPortrait from '@/assets/atheek.png'; // Replace with your actual por
 
 const AboutSection = () => {
   return (
-    <section className="section-padding hero-bg-animation relative overflow-hidden">
+    <section id='aboutme' className="section-padding hero-bg-animation relative overflow-hidden">
       {/* Background Typography */}
       <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
         <div className="text-white/5 font-bold text-[12rem] lg:text-[20rem] leading-none select-none">

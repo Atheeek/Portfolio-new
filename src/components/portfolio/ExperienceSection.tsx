@@ -57,7 +57,7 @@ const ExperienceSection = () => {
   };
 
   return (
-    <section className="section-padding bg-black relative overflow-hidden">
+    <section id='experience' className="section-padding bg-black relative overflow-hidden">
       {/* --- 3D BACKGROUND --- */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
         <Suspense fallback={<FallbackBackground />}>
