@@ -92,7 +92,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ isOpen, onClose }) => {
       )}
       
       <div
-        className={`fixed top-28 right-4 md:right-20 w-auto bg-black/80 backdrop-blur-sm md:backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-8 z-[60]
+        className={`fixed top-28 right-4 md:right-20 w-auto bg-black/70 backdrop-blur-xl border border-white/10 rounded-3xl p-8 z-[60]
           transition-all duration-150 ease-out
           origin-top-right
           ${isOpen 
@@ -106,11 +106,11 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ isOpen, onClose }) => {
           perspective: '1000px',
         }}
       >
-        <div className="flex flex-col gap-8 md:gap-10">
+        <div className="flex flex-col gap-10">
           {/* Menu Section */}
           <div>
-            <p className="text-white/40 text-sm mb-4 md:mb-6">Menu</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 md:gap-y-4 md:gap-x-12">
+            <p className="text-white/40 text-sm mb-6">Menu</p>
+            <div className="grid grid-cols-2 gap-y-4 gap-x-12">
               <MenuItem icon={Home} text="Home" to="hero" onClick={onClose} />
               <MenuItem icon={Briefcase} text="Works" to="projects" onClick={onClose} />
               <MenuItem icon={LayoutGrid} text="Portfolio" to="aboutme" onClick={onClose} />
@@ -122,31 +122,31 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ isOpen, onClose }) => {
 
           {/* Social Network Section */}
           <div>
-            <p className="text-white/40 text-sm mb-4 md:mb-6">Social Network</p>
-            <div className="flex items-center gap-3 md:gap-4">
+            <p className="text-white/40 text-sm mb-6">Social Network</p>
+            <div className="flex items-center gap-4">
               <a 
                 href="https://github.com/Atheeek/City-fix" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors duration-150 touch-manipulation"
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors duration-150 touch-manipulation"
               >
-                <Github className="w-4 h-4 md:w-5 md:h-5" />
+                <Github className="w-5 h-5" />
               </a>
               <a 
                 href="https://www.instagram.com/atheekrhmn/" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors duration-150 touch-manipulation"
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors duration-150 touch-manipulation"
               >
-                <Instagram className="w-4 h-4 md:w-5 md:h-5" />
+                <Instagram className="w-5 h-5" />
               </a>
               <a 
                 href="https://www.linkedin.com/in/mahammad-atheek-rahman/" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors duration-150 touch-manipulation"
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors duration-150 touch-manipulation"
               >
-                <Linkedin className="w-4 h-4 md:w-5 md:h-5" />
+                <Linkedin className="w-5 h-5" />
               </a>
             </div>
           </div>
