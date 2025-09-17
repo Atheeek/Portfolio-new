@@ -58,11 +58,11 @@ const AboutSection = () => {
                 <p className="text-white/60">Clients / Collaborations</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-neon mb-2">2+</div>
+                <div className="text-3xl font-bold text-neon mb-2">1+</div>
                 <p className="text-white/60">Years Experience</p>
               </div>
               <div>
-                <div className="text-3xl font-bold text-neon mb-2">1+</div>
+                <div className="text-3xl font-bold text-neon mb-2">2+</div>
                 <p className="text-white/60">Internships / Achievements</p>
               </div>
             </div>
