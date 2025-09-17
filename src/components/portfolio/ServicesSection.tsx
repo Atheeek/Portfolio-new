@@ -110,13 +110,18 @@ const ContactForm: React.FC = () => {
                 Your Phone
               </label>
               <input
-                type="text"
+                type="tel"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="01-234-5678"
+                placeholder="9876543210"
+                inputMode="numeric"
+                pattern="[6-9][0-9]{9}"  // must start 6-9 and be 10 digits
+                maxLength={10}
                 className="w-full border-b text-black border-gray-300 bg-transparent focus:outline-none focus:border-black py-2"
+                required
               />
+
             </div>
           </div>
 
