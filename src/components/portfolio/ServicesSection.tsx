@@ -81,7 +81,7 @@ const ContactForm: React.FC = () => {
           </div>
           <a
             href="mailto:atheek163@gmail.com"
-            className="px-5 py-2 w-[29vh] md:w-[35vh] border rounded-full text-sm text-gray-700 hover:bg-gray-100 transition"
+            className="px-5 py-2 w-[33vh] md:w-[35vh] border rounded-full text-sm text-gray-700 hover:bg-gray-100 transition"
           >
             Mail me at: atheek163@gmail.com
           </a>
