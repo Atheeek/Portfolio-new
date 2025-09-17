@@ -2,7 +2,6 @@ import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import React, { useRef, Suspense, lazy } from 'react';
 
 // Lazily import the Spline component for better performance
-const Spline = lazy(() => import('@splinetool/react-spline'));
 
 // This is your original background, now used as a loading fallback
 const FallbackBackground = () => (
@@ -59,14 +58,7 @@ const ExperienceSection = () => {
   return (
     <section id='experience' className="section-padding bg-black relative overflow-hidden">
       {/* --- 3D BACKGROUND --- */}
-      <div className="absolute top-0 left-0 w-full h-full z-0">
-        <Suspense fallback={<FallbackBackground />}>
-          {/* <Spline
-            // scene="https://prod.spline.design/bsuQI1uutwMwFf5h/scene.splinecode"
-            // scene="https://prod.spline.design/V8BCErw6UD7Hhcz3/scene.splinecode"
-          /> */}
-        </Suspense>
-      </div>
+     
 
       {/* --- FOREGROUND CONTENT --- */}
       <div className="container-padding relative z-10">
@@ -110,7 +102,7 @@ const ExperienceSection = () => {
                   </div>
                 </div>
 
-                <p className="text-white/60 text-sm mb-6 leading-relaxed">
+                <p className="text-white/60 text-sm mb-6 font-poppins leading-relaxed">
                   {exp.description}
                 </p>
 
