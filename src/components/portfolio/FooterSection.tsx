@@ -44,7 +44,7 @@ const currentTime = new Date().toLocaleTimeString('en-US', {
           <div>
             <h4 className="text-white/50 text-sm uppercase tracking-wider mb-6">Menu</h4>
             <nav className="space-y-4">
-              {['Hero', 'Services', 'Works', 'Approach', 'Testimonials', 'Contact'].map((item) => (
+              {['Hero', 'Services', 'Projects', 'Approach', 'Testimonials', 'Contact'].map((item) => (
                 <a 
                   key={item}
                   href={`#${item.toLowerCase()}`} 

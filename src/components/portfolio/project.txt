@@ -495,3 +495,137 @@ export default function GalleryPage() {
     </div>
   );
 }
+
+
+***************************************************************************
+
+
+import React, { useState } from "react";
+
+const ContactForm: React.FC = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    phone: "",
+    interest: "",
+    budget: "",
+    message: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    // TODO: send to API / backend
+  };
+
+  return (
+    <section className="bg-gray-50 py-16 px-6 md:px-20">
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
+        <div className="flex justify-between items-start mb-12">
+          <div>
+            <p className="text-sm uppercase tracking-wide text-gray-500">
+              Contact Me
+            </p>
+            <h2 className="text-5xl text-black font-light tracking-tight">Get In Touch</h2>
+          </div>
+          <a
+            href="mailto:atheek163@gmail.com"
+            className="px-5 py-2 border rounded-full text-sm text-gray-700 hover:bg-gray-100 transition"
+          >
+            Mail me at: atheek163@gmail.com
+          </a>
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <label className="block mb-2 text-gray-800">Your Email</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="janesmith@email.com"
+                className="w-full border-b border-gray-300 bg-transparent focus:outline-none focus:border-black py-2"
+                required
+              />
+            </div>
+            <div>
+              <label className="block mb-2 text-gray-800">Your Phone</label>
+              <input
+                type="text"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="01-234-5678"
+                className="w-full border-b border-gray-300 bg-transparent focus:outline-none focus:border-black py-2"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <label className="block mb-2 text-gray-800">I'm interested in...</label>
+              <select
+                name="interest"
+                value={formData.interest}
+                onChange={handleChange}
+                className="w-full border-b border-gray-300 text-black bg-transparent focus:outline-none focus:border-black py-2"
+              >
+                <option value="">Select...</option>
+                <option value="web">Web Development</option>
+                <option value="design">UI/UX Design</option>
+                <option value="app">Mobile App</option>
+              </select>
+            </div>
+            <div>
+              <label className="block mb-2 text-gray-800">Your Budget</label>
+              <select
+                name="budget"
+                value={formData.budget}
+                onChange={handleChange}
+                className="w-full border-b border-gray-300 bg-transparent text-black focus:outline-none focus:border-black py-2"
+              >
+                <option value="">Select...</option>
+                <option value="low">$1000 - $3000</option>
+                <option value="medium">$3000 - $7000</option>
+                <option value="high">$7000+</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label className="block mb-2 text-gray-800">More About The Project</label>
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Type here..."
+              className="w-full border-b border-gray-300 bg-transparent text-black focus:outline-none focus:border-black py-2 h-24"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="flex items-center gap-2 bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition"
+          >
+            Send Request
+            <span className="w-6 h-6 flex items-center justify-center rounded-full bg-white text-black">
+              →
+            </span>
+          </button>
+        </form>
+      </div>
+    </section>
+  );
+};
+
+export default ContactForm;
