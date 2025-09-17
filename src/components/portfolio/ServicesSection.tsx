@@ -101,7 +101,7 @@ const ContactForm: React.FC = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="janesmith@email.com"
-                className="w-full border-b border-gray-300 bg-transparent focus:outline-none focus:border-black py-2"
+                className="w-full border-b border-gray-300 bg-transparent text-black focus:outline-none focus:border-black py-2"
                 required
               />
             </div>
@@ -115,7 +115,7 @@ const ContactForm: React.FC = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="01-234-5678"
-                className="w-full border-b border-gray-300 bg-transparent focus:outline-none focus:border-black py-2"
+                className="w-full border-b text-black border-gray-300 bg-transparent focus:outline-none focus:border-black py-2"
               />
             </div>
           </div>
