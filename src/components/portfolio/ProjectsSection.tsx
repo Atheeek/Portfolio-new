@@ -52,37 +52,37 @@ const ProjectsSection = () => {
   }, []);
 
   // GSAP ScrollTrigger animation for the pinned stacking effect
-// Find this useLayoutEffect hook in your code
+  // Find this useLayoutEffect hook in your code
 
-useLayoutEffect(() => {
-  let ctx = gsap.context(() => {
-    const slides = slidesRef.current;
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: componentRef.current,
-        start: 'top top',
-        end: () => `+=${(slides.length - 1) * 1000}`,
-        pin: true,
-        scrub: 0.5,
-        // REMOVE THE ENTIRE 'snap' OBJECT
-        /*
-        snap: {
-          snapTo: 1 / (slides.length - 1),
-          duration: 0.5,
-          ease: 'power2.inOut',
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      const slides = slidesRef.current;
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: componentRef.current,
+          start: 'top top',
+          end: () => `+=${(slides.length - 1) * 1000}`,
+          pin: true,
+          scrub: 0.5,
+          // REMOVE THE ENTIRE 'snap' OBJECT
+          /*
+          snap: {
+            snapTo: 1 / (slides.length - 1),
+            duration: 0.5,
+            ease: 'power2.inOut',
+          },
+          */
+          invalidateOnRefresh: true,
         },
-        */
-        invalidateOnRefresh: true,
-      },
-    })
-    .from(slides.slice(1), {
-      yPercent: 100,
-      stagger: 0.5, // REDUCE stagger from 1 to a smaller value
-      ease: 'power2.inOut',
-    });
-  }, componentRef);
-  return () => ctx.revert();
-}, []);
+      })
+        .from(slides.slice(1), {
+          yPercent: 100,
+          stagger: 0.5, // REDUCE stagger from 1 to a smaller value
+          ease: 'power2.inOut',
+        });
+    }, componentRef);
+    return () => ctx.revert();
+  }, []);
 
 
   // Optimized custom cursor effect that works on ALL project links
@@ -99,7 +99,7 @@ useLayoutEffect(() => {
       xTo(e.clientX);
       yTo(e.clientY);
     };
-    
+
     const handleMouseEnter = () => gsap.to(cursor, { scale: 1, opacity: 1, duration: 0.3 });
     const handleMouseLeave = () => gsap.to(cursor, { scale: 0, opacity: 0, duration: 0.3 });
 
@@ -108,7 +108,7 @@ useLayoutEffect(() => {
       container.addEventListener("mouseenter", handleMouseEnter);
       container.addEventListener("mouseleave", handleMouseLeave);
     });
-    
+
     return () => {
       containers.forEach(container => {
         container.removeEventListener("mousemove", handleMouseMove);
@@ -137,8 +137,24 @@ useLayoutEffect(() => {
           <div className="relative h-full w-full flex items-center justify-center">
             <div className="absolute ml-5 top-1/2 -translate-y-1/2 left-8 md:left-16 text-white/50 text-sm hidden md:block"> <p>DATE: {project.date}</p> </div>
             <div className="absolute mr-5 top-1/2 -translate-y-1/2 right-8 md:right-16 text-white/50 text-sm hidden md:block"> <p>{project.company}</p> </div>
-            <button className="absolute top-1/2 -translate-y-1/2 left-4 md:left-8 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"> <ChevronLeft className="w-5 h-5" /> </button>
-            <button className="absolute top-1/2 -translate-y-1/2 right-4 md:right-8 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"> <ChevronRight className="w-5 h-5" /> </button>
+            <button
+              className="absolute top-1/2 -translate-y-1/2 left-4 md:left-8 
+             w-10 h-10 rounded-full bg-white/10 
+             hidden md:flex items-center justify-center 
+             hover:bg-white/20 transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            <button
+              className="absolute top-1/2 -translate-y-1/2 right-4 md:right-8 
+             w-10 h-10 rounded-full bg-white/10 
+             hidden md:flex items-center justify-center 
+             hover:bg-white/20 transition-colors"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+
 
             <div className="flex flex-col items-center gap-10 w-full max-w-4xl px-4">
               <p className="text-white/50 text-xs uppercase mt-10 tracking-widest">MY WORK</p>
