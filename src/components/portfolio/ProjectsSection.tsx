@@ -7,8 +7,8 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 // Your image imports
 import cmsImage from '@/assets/cmss.png';
 import cognifyImage from '@/assets/cognify.png';
-import igadsEcomImage from '@/assets/igads4.png';
-import igadsLandingImage from '@/assets/igads5.png';
+import igadsEcomImage from '@/assets/igad.png';
+import igadsLandingImage from '@/assets/igadss.png';
 import schoolImage from '@/assets/school.png';
 
 // A helper component for your arrow icon
