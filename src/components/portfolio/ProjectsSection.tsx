@@ -131,7 +131,7 @@ const ProjectsSection = () => {
         <div
           key={project.id}
           ref={(el) => (slidesRef.current[index] = el!)}
-          className="absolute inset-0 h-full w-full flex items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-800 to-black"
+          className="absolute inset-0 h-full w-full flex items-center justify-center bg-black"
           style={{ willChange: 'transform' }}
         >
           <div className="relative h-full w-full flex items-center justify-center">
