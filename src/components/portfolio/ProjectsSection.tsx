@@ -5,7 +5,7 @@ import Lenis from 'lenis';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 // Your image imports
-import cmsImage from '@/assets/cms1.png';
+import cmsImage from '@/assets/cmss.png';
 import cognifyImage from '@/assets/cognify.png';
 import igadsEcomImage from '@/assets/igads4.png';
 import igadsLandingImage from '@/assets/igads5.png';
@@ -157,8 +157,9 @@ const ProjectsSection = () => {
 
 
             <div className="flex flex-col items-center gap-10 w-full max-w-4xl px-4">
-              <p className="text-white/50 text-xs uppercase mt-10 tracking-widest">MY WORK</p>
-              <h2 className="text-[38px] md:text-[48px] font-[400] font-poppins text-center text-white">
+              <p className="text-white/50 text-xs uppercase mt-20 tracking-widest">MY WORK</p>
+<h2 className="text-[38px] md:text-[48px] font-[400] font-poppins text-center text-white leading-[37px]">
+ 
                 {project.title}
               </h2>
               <a
