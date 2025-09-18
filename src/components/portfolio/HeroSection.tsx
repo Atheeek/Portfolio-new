@@ -105,7 +105,7 @@ const HeroSection: React.FC = () => {
 
         <div className="container mx-auto px-6 relative z-10">
           {/* (The rest of your hero section content remains the same) */}
-          <div className="grid lg:grid-cols-2 gap-x-12 items-center min-h-screen pt-28 pb-16 lg:pt-20">
+          <div className="grid sm:grid-cols-2 gap-x-12 items-center min-h-screen pt-28 pb-16 lg:pt-20">
             <div className="flex flex-col justify-center lg:order-1">
               <div className="text-left">
                 <p className="text-lg ml-0 md:ml-6 font-light">
@@ -113,7 +113,7 @@ const HeroSection: React.FC = () => {
                   <span className="text-white">My name </span>
                   <span className="text-white/70">is</span>
                 </p>
-                <h1 className="font-sulphur text-6xl leading-none mt-4 font-normal lg:text-[157px] lg:leading-[128px]">
+                <h1 className="font-sulphur text-[80px] leading-none mt-4 font-normal md:text-9xl lg:text-[157px] lg:leading-[128px]">
                   <span className="text-[rgb(133,238,0)]">Atheek</span><br />
                   <span>rahman</span>
                 </h1>
