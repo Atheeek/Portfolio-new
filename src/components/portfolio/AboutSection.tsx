@@ -70,21 +70,21 @@ const AboutSection = () => {
             {/* Social Links */}
             <div className="flex gap-4 pt-4">
               <a 
-                href="https://linkedin.com/in/your-profile" 
+                href="https://www.linkedin.com/in/mahammad-atheek-rahman/" 
                 target="_blank"
                 className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-neon hover:text-black transition-all duration-300 interactive-hover"
               >
                 <Linkedin className="w-5 h-5" />
               </a>
               <a 
-                href="https://github.com/your-username" 
+                href="https://github.com/Atheeek/" 
                 target="_blank"
                 className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-neon hover:text-black transition-all duration-300 interactive-hover"
               >
                 <Github className="w-5 h-5" />
               </a>
               <a 
-                href="https://dribbble.com/your-profile" 
+                href="https://x.com/Atheek163" 
                 target="_blank"
                 className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-neon hover:text-black transition-all duration-300 interactive-hover"
               >
