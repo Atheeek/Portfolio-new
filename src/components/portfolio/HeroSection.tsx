@@ -113,7 +113,7 @@ const HeroSection: React.FC = () => {
                   <span className="text-white">My name </span>
                   <span className="text-white/70">is</span>
                 </p>
-                <h1 className="font-sulphur text-[80px] leading-none mt-4 font-normal md:text-9xl lg:text-[157px] lg:leading-[128px]">
+                <h1 className="font-sulphur text-6xl leading-none mt-4 font-normal md:text-9xl lg:text-[157px] lg:leading-[128px]">
                   <span className="text-[rgb(133,238,0)]">Atheek</span><br />
                   <span>rahman</span>
                 </h1>
