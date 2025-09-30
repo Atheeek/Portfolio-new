@@ -129,7 +129,7 @@ const HeroSection: React.FC = () => {
         >
           {/* (The rest of your hero section content remains the same) */}
           <div className="grid sm:grid-cols-2 gap-x-12 items-center min-h-screen pt-28 pb-16 lg:pt-20">
-            <div className="flex flex-col pt-14 md:pt-24 justify-center lg:order-1">
+            <div className="flex flex-col pt-10 md:pt-24 justify-center lg:order-1">
               <div className="text-left">
                 <p className="text-lg ml-0 md:ml-6 font-light">
                   <span className="text-white/70">Hello </span>
