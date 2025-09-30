@@ -5,9 +5,8 @@ import neonLogo from "@/assets/ChatGPT Image Sep 14, 2025, 12_58_26 AM.png";
 import DropdownMenu from '../DropdownMenu';
 
 // --- (NavBar and FallbackBackground components remain the same) ---
-
 const NavBar: React.FC<any> = ({ onMenuClick, isMenuOpen }) => {
-  // (No changes here)
+  // ... (No changes here)
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 rounded-b-[50px] pt-2 backdrop-blur-md bg-black border-b border-white/10 mx-4 md:mx-20">
       <div className="container mx-auto flex items-center justify-between px-6 py-4 md:py-1 lg:px-8">
@@ -41,10 +40,25 @@ const NavBar: React.FC<any> = ({ onMenuClick, isMenuOpen }) => {
 };
 
 const FallbackBackground: React.FC = () => (
-  // (No changes here)
+  // ... (No changes here)
   <div className="absolute inset-0 z-0">
     <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-lime-300/5 rounded-full blur-3xl animate-pulse"></div>
     <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-lime-300/10 rounded-full blur-2xl float-animation"></div>
+  </div>
+);
+
+// NEW: Loading Overlay Component
+const LoadingOverlay: React.FC<{ isLoaded: boolean }> = ({ isLoaded }) => (
+  <div
+    className={`fixed inset-0 z-[100] flex items-center justify-center bg-black transition-opacity duration-500 ${
+      !isLoaded ? 'opacity-100' : 'opacity-0 pointer-events-none'
+    }`}
+  >
+    <img
+      src={neonLogo}
+      alt="Loading..."
+      className="h-24 w-24 md:h-32 md:w-32 object-contain animate-pulse"
+    />
   </div>
 );
 
@@ -54,23 +68,23 @@ const Spline = lazy(() => import('@splinetool/react-spline'));
 const HeroSection: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   
-  // STEP 1: Add state for visibility and a ref for the section
+  // Your existing visibility logic (great for performance!)
   const [isHeroVisible, setIsHeroVisible] = useState<boolean>(true);
   const heroRef = useRef<HTMLElement>(null);
+
+  // NEW: State to track if the Spline scene is loaded
+  const [isSceneLoaded, setIsSceneLoaded] = useState<boolean>(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(prev => !prev);
   };
 
-  // STEP 2: Create the IntersectionObserver logic inside a useEffect
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Update state to true if the element is intersecting, false otherwise
         setIsHeroVisible(entry.isIntersecting);
       },
       {
-        // Start observing when the element is almost out of view
         rootMargin: '0px 0px -100px 0px',
       }
     );
@@ -80,30 +94,39 @@ const HeroSection: React.FC = () => {
       observer.observe(currentRef);
     }
 
-    // Cleanup the observer when the component unmounts
     return () => {
       if (currentRef) {
         observer.unobserve(currentRef);
       }
     };
-  }, []); // Empty dependency array ensures this runs only once on mount
+  }, []);
 
   return (
     <>
-      {/* STEP 3: Attach the ref to the section element */}
+      {/* NEW: Render the loading overlay */}
+      <LoadingOverlay isLoaded={isSceneLoaded} />
+
       <section ref={heroRef} id='hero' className="relative min-h-screen bg-black text-white overflow-hidden">
         <Suspense fallback={<FallbackBackground />}>
           <div className="absolute top-0 left-0 w-full h-full z-0">
-            {/* STEP 4: Conditionally render the Spline component */}
             {isHeroVisible && (
-              <Spline scene="https://prod.spline.design/Noj8603bFR7SjxGz/scene.splinecode" />
+              <Spline 
+                scene="https://prod.spline.design/Noj8603bFR7SjxGz/scene.splinecode" 
+                // MODIFIED: Add the onLoad event handler
+                onLoad={() => setIsSceneLoaded(true)}
+              />
             )}
           </div>
         </Suspense>
 
         <NavBar onMenuClick={toggleMenu} isMenuOpen={isMenuOpen} />
 
-        <div className="container mx-auto px-6 relative z-10">
+        {/* MODIFIED: Wrap content and control its visibility */}
+        <div 
+          className={`container mx-auto px-6 relative z-10 transition-opacity duration-1000 ${
+            isSceneLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
           {/* (The rest of your hero section content remains the same) */}
           <div className="grid sm:grid-cols-2 gap-x-12 items-center min-h-screen pt-28 pb-16 lg:pt-20">
             <div className="flex flex-col pt-24 justify-center lg:order-1">

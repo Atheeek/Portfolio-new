@@ -13,6 +13,7 @@ export default {
       },
     },
     extend: {
+      
       fontFamily: {
         sulphur: ['"Sulphur Point"', 'sans-serif'],
                 poppins: ['Poppins', 'sans-serif'],
@@ -20,6 +21,7 @@ export default {
         
           inter: ['Inter', 'sans-serif'],
       },
+   
    
       colors: {
                 'neon-green': '#A3E635',
@@ -86,6 +88,7 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+       
         "accordion-down": {
           from: {
             height: "0",
@@ -102,10 +105,12 @@ export default {
             height: "0",
           },
         },
+        
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+
       },
     },
   },
