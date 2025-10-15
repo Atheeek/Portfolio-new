@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import {
   Home, Briefcase, LayoutGrid, MessageSquare,
-  Send, Github, Instagram, Linkedin
+  Send,Star, Github, Instagram, Linkedin
 } from 'lucide-react';
 import { Link } from 'react-scroll';
 
@@ -117,6 +117,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ isOpen, onClose }) => {
               <MenuItem icon={LayoutGrid} text="Experience" to="experience" onClick={onClose} />
               <MenuItem icon={MessageSquare} text="Testimonial" to="testimonials" onClick={onClose} />
               <MenuItem icon={Send} text="Contact Form" to="contact" onClick={onClose} />
+              <MenuItem icon={Star} text="Skills" to="approach" onClick={onClose} />
             </div>
           </div>
 
