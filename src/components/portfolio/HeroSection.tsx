@@ -157,7 +157,7 @@ const HeroSection: React.FC = () => {
                   <img
                     src={heroPortrait}
                     alt="Portrait"
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full  object-cover object-top"
                   />
                 </div>
                 <div className="absolute right-4 bottom-6 space-y-3">

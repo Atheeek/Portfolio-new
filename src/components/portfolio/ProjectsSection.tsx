@@ -10,6 +10,7 @@ import cognifyImage from '@/assets/cognify.png';
 import igadsEcomImage from '@/assets/igad.png';
 import igadsLandingImage from '@/assets/igadss.png';
 import schoolImage from '@/assets/school.png';
+import pgImage from '@/assets/pg.png';
 
 // A helper component for your arrow icon
 export function ThinLongArrowUpRight({ size = 32, className = "" }) {
@@ -30,9 +31,10 @@ const ProjectsSection = () => {
   const projects = [
     { id: 1, title: 'Complaint Management System', image: cmsImage, tags: ['React.js', 'TailwindCSS', 'GoogleMap API', 'Node.js', 'mongoDB'], date: '2025', company: 'SmartCity CMS', github: 'https://github.com/Atheeek/City-fix' },
     { id: 2, title: 'Cognify – Child Learning & Screening Platform', image: cognifyImage, tags: ['React.js', 'JWT Webtokens', 'Gamified Learning', 'AI Chatbot', 'Node.js', 'mongoDB', 'express'], date: '2025', company: 'Cognify', github: 'https://github.com/Atheeek/Cognify-project' },
-    { id: 3, title: 'IGADS E-commerce Website', image: igadsEcomImage, tags: ['Shopify'], date: '2024', company: 'IGADS', github: 'https://igadsmobile.myshopify.com' },
-    { id: 4, title: 'IGADS Landing Page', image: igadsLandingImage, tags: ['Typescript', 'TailwindCSS', '3D Animations', 'framer-motion'], date: '2024', company: 'IGADS', github: 'https://igads.vercel.app' },
-    { id: 5, title: 'Modern School Website', image: schoolImage, tags: ['Typescript', 'TailwindCSS', 'Responsive UI'], date: '2023', company: 'School Project', github: 'https://tems-school.vercel.app/' },
+    { id: 3, title: 'PG-Pal | SaaS Management Platform', image: pgImage, tags: ['Typescript', 'TailwindCSS', 'Responsive UI','Twilio API','SaaS Architecture'], date: '2025', company: 'Personal Full-Stack Project', github: 'https://smart-pg.vercel.app/' },
+    { id: 4, title: 'IGADS E-commerce Website', image: igadsEcomImage, tags: ['Shopify'], date: '2024', company: 'IGADS', github: 'https://igadsmobile.myshopify.com' },
+    { id:5, title: 'IGADS Landing Page', image: igadsLandingImage, tags: ['Typescript', 'TailwindCSS', '3D Animations', 'framer-motion'], date: '2024', company: 'IGADS', github: 'https://igads.vercel.app' },
+    { id: 6, title: 'Modern School Website', image: schoolImage, tags: ['Typescript', 'TailwindCSS', 'Responsive UI'], date: '2023', company: 'School Project', github: 'https://tems-school.vercel.app/' },
   ];
 
   const componentRef = useRef<HTMLDivElement>(null);
