@@ -1,11 +1,15 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Github, ArrowUpRight, ChevronLeft } from "lucide-react";
 import { getProjectBySlug } from "@/lib/projects";
-
+import { useEffect } from "react";
 const ProjectDetail = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
   const project = getProjectBySlug(slug || "");
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [slug]);
 
   if (!project) {
     return (
