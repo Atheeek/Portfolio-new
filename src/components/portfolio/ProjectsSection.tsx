@@ -172,15 +172,17 @@ const ProjectsSection = () => {
                 {project.title}
               </h2>
               <Link
-                to={`/projects/${project.slug}`}
-                onClick={() => {
-                  try {
-                    sessionStorage.setItem('projectsScrollY', String(window.scrollY));
-                    sessionStorage.setItem('projectsIndex', String(index));
-                  } catch {}
-                }}
-                className="project-link w-full max-w-2xl bg-white/[.03] rounded-2xl border border-white/10 shadow-[0_0_80px_rgba(255,255,255,0.08)] backdrop-blur-sm"
-              >
+  to={`/projects/${project.slug}`}
+  onClick={() => {
+    try {
+      sessionStorage.setItem('projectsScrollY', String(window.scrollY));
+      sessionStorage.setItem('projectsIndex', String(index));
+      window.scrollTo(0, 0); // scroll to top
+    } catch {}
+  }}
+  className="project-link w-full max-w-2xl bg-white/[.03] rounded-2xl border border-white/10 shadow-[0_0_80px_rgba(255,255,255,0.08)] backdrop-blur-sm"
+>
+
                 <div className="aspect-video w-full overflow-hidden rounded-xl">
                   <img
                     src={project.image}
