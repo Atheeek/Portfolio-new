@@ -2,15 +2,11 @@ import { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Github } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { projects } from '@/lib/projects';
 
 // Your image imports
-import cmsImage from '@/assets/cmss.png';
-import cognifyImage from '@/assets/cognify.png';
-import igadsEcomImage from '@/assets/igad.png';
-import igadsLandingImage from '@/assets/igadss.png';
-import schoolImage from '@/assets/school.png';
-import pgImage from '@/assets/pg.png';
 
 // A helper component for your arrow icon
 export function ThinLongArrowUpRight({ size = 32, className = "" }) {
@@ -28,14 +24,6 @@ export function ThinLongArrowUpRight({ size = 32, className = "" }) {
 gsap.registerPlugin(ScrollTrigger);
 
 const ProjectsSection = () => {
-  const projects = [
-    { id: 1, title: 'Complaint Management System', image: cmsImage, tags: ['React.js', 'TailwindCSS', 'GoogleMap API', 'Node.js', 'mongoDB'], date: '2025', company: 'SmartCity CMS', github: 'https://github.com/Atheeek/City-fix' },
-    { id: 2, title: 'Cognify – Child Learning & Screening Platform', image: cognifyImage, tags: ['React.js', 'JWT Webtokens', 'Gamified Learning', 'AI Chatbot', 'Node.js', 'mongoDB', 'express'], date: '2025', company: 'Cognify', github: 'https://github.com/Atheeek/Cognify-project' },
-    { id: 3, title: 'PG-Pal | SaaS Management Platform', image: pgImage, tags: ['Typescript', 'TailwindCSS', 'Responsive UI','Twilio API','SaaS Architecture'], date: '2025', company: 'Personal Full-Stack Project', github: 'https://smart-pg.vercel.app/' },
-    { id: 4, title: 'IGADS E-commerce Website', image: igadsEcomImage, tags: ['Shopify'], date: '2024', company: 'IGADS', github: 'https://igadsmobile.myshopify.com' },
-    { id:5, title: 'IGADS Landing Page', image: igadsLandingImage, tags: ['Typescript', 'TailwindCSS', '3D Animations', 'framer-motion'], date: '2024', company: 'IGADS', github: 'https://igads.vercel.app' },
-    { id: 6, title: 'Modern School Website', image: schoolImage, tags: ['Typescript', 'TailwindCSS', 'Responsive UI'], date: '2023', company: 'School Project', github: 'https://tems-school.vercel.app/' },
-  ];
 
   const componentRef = useRef<HTMLDivElement>(null);
   const slidesRef = useRef<HTMLDivElement[]>([]);
@@ -59,7 +47,7 @@ const ProjectsSection = () => {
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       const slides = slidesRef.current;
-      gsap.timeline({
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: componentRef.current,
           start: 'top top',
@@ -82,6 +70,25 @@ const ProjectsSection = () => {
           stagger: 0.5, // REDUCE stagger from 1 to a smaller value
           ease: 'power2.inOut',
         });
+
+      // Precise restoration to the clicked slide if returning
+      requestAnimationFrame(() => {
+        try {
+          if (window.location.hash === '#projects') {
+            const savedIndex = sessionStorage.getItem('projectsIndex');
+            if (savedIndex && tl.scrollTrigger) {
+              const index = parseInt(savedIndex, 10);
+              if (!Number.isNaN(index) && slides.length > 1) {
+                const st = tl.scrollTrigger;
+                const progress = Math.max(0, Math.min(1, index / (slides.length - 1)));
+                const targetY = st.start + progress * (st.end - st.start);
+                window.scrollTo({ top: targetY, behavior: 'auto' });
+                sessionStorage.removeItem('projectsIndex');
+              }
+            }
+          }
+        } catch {}
+      });
     }, componentRef);
     return () => ctx.revert();
   }, []);
@@ -164,10 +171,14 @@ const ProjectsSection = () => {
  
                 {project.title}
               </h2>
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to={`/projects/${project.slug}`}
+                onClick={() => {
+                  try {
+                    sessionStorage.setItem('projectsScrollY', String(window.scrollY));
+                    sessionStorage.setItem('projectsIndex', String(index));
+                  } catch {}
+                }}
                 className="project-link w-full max-w-2xl bg-white/[.03] rounded-2xl border border-white/10 shadow-[0_0_80px_rgba(255,255,255,0.08)] backdrop-blur-sm"
               >
                 <div className="aspect-video w-full overflow-hidden rounded-xl">
@@ -179,7 +190,7 @@ const ProjectsSection = () => {
                     decoding="async"
                   />
                 </div>
-              </a>
+              </Link>
               <div className="flex flex-wrap gap-3 justify-center">
                 {project.tags.map(tag => (
                   <span key={tag} className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-white/80">
@@ -191,6 +202,26 @@ const ProjectsSection = () => {
           </div>
         </div>
       ))}
+
+      {/* Final slide: View more projects */}
+      {/* <div
+        ref={(el) => (slidesRef.current[projects.length] = el!)}
+        className="absolute inset-0 h-full w-full flex items-center justify-center bg-black"
+        style={{ willChange: 'transform' }}
+      >
+        <div className="flex flex-col items-center gap-6 w-full max-w-4xl px-4">
+          <p className="text-white/50 text-xs uppercase tracking-widest">EXPLORE MORE</p>
+          <a
+            href="https://github.com/Atheeek"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 text-white font-semibold hover:bg-white/20 transition-colors duration-300 border border-white/10 backdrop-blur-sm"
+          >
+            <Github className="w-5 h-5" />
+            View more projects
+          </a>
+        </div>
+      </div> */}
     </section>
   );
 };

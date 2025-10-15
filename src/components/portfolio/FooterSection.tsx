@@ -31,7 +31,7 @@ const currentTime = new Date().toLocaleTimeString('en-US', {
               </div>
 
               <a 
-  href="mailto:atheek163@gmail.com?subject=Let's%20Start%20a%20Project" 
+  href="#contact" 
   className="bg-neon text-black px-8 py-4 rounded-full hover:bg-neon-soft transition-all duration-300 font-medium mt-6 inline-block text-center"
 >
   Start a Project
