@@ -43,7 +43,7 @@ const ProjectDetail = () => {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-lime-400 text-black font-medium hover:bg-lime-300 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white font-medium hover:bg-white/20 transition-colors"
               >
                 Live <ArrowUpRight className="w-4 h-4" />
               </a>
@@ -114,7 +114,7 @@ const ProjectDetail = () => {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[rgb(133,238,0)] text-black font-semibold hover:bg-lime-300 transition-colors duration-300"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 text-white font-semibold hover:bg-white/20 transition-colors duration-300"
             >
               View Live <ArrowUpRight className="w-5 h-5" />
             </a>
