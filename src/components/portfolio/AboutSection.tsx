@@ -31,20 +31,22 @@ const AboutSection = () => {
             <div>
               <p className="text-white/50 text-sm uppercase tracking-wider mb-6">About Me</p>
               
-              <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight mb-8">
-                Building Scalable & Impactful Software Solutions.{' '}
-                <span className="text-white/40">Full-stack development, DevOps & AI-powered apps.</span>
-              </h2>
+            <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight mb-8">
+  Engineering Scalable & Intelligent Systems.{' '}
+  <span className="text-white/40">Full-stack & DevOps.</span>
+</h2>
+
 
               <div className="space-y-6">
-                <p className="text-white/70 text-lg leading-relaxed">
-                  I'm a passionate Full Stack Developer & DevOps enthusiast with hands-on experience building production-ready applications using MERN, Next.js, Firebase, and Docker. I specialize in creating scalable web solutions with AI integrations and intuitive user experiences.
-                </p>
+  <p className="text-white/70 text-lg leading-relaxed">
+    I’m a Full Stack Developer and DevOps Engineer from Mangalore who loves building products that are as functional as they are visually engaging. I got into coding during college and have been hooked on solving real-world problems and making tech feel more human ever since.
+  </p>
 
-                <p className="text-white/70 text-lg leading-relaxed">
-                  I have worked on projects like Cognify (an AI-powered child learning platform) and SmartCity CMS (a complaint management system with real-time maps and automation). My focus is on combining clean code, practical solutions, and impactful UI/UX.
-                </p>
-              </div>
+  <p className="text-white/70 text-lg leading-relaxed">
+    I work with the MERN stack — React, Node.js, MongoDB, and Tailwind CSS — with a strong focus on clean, intuitive frontend design. I’m detail-driven, fast at problem solving, and passionate about automation through Docker and DevOps. My goal is to create scalable, meaningful solutions at the intersection of AI, design, and development.
+  </p>
+</div>
+
             </div>
 
             {/* Skills Stats */}
